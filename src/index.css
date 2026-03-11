@@ -1,0 +1,856 @@
+/* SimplexaLabs — Design tokens & base */
+@import "tailwindcss";
+
+:root {
+  /* Brand */
+  --color-morado-ai: #7c3aed;
+  --color-azul-profundo: #1e3a5f;
+  --color-azul-electrico: #2563eb;
+  --color-azul-neon: #e0f2fe;
+  --color-blanco-limpio: #f8fafc;
+
+  /* Semantic */
+  --color-text-primary: var(--color-azul-profundo);
+  --color-text-secondary: #64748b;
+  --color-text-muted: #94a3b8;
+  --color-bg-section: var(--color-blanco-limpio);
+  --color-bg-hero-start: #bae6fd;
+  --color-bg-hero-mid: #e0f2fe;
+  --color-bg-hero-end: #ffffff;
+  --color-cta-primary: var(--color-azul-electrico);
+  --color-cta-primary-hover: #1d4ed8;
+  --color-cta-gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  --color-accent-error: #dc2626;
+
+  /* Footer */
+  --footer-bg: #0a1121;
+  --footer-text: rgba(255, 255, 255, 0.9);
+  --footer-muted: rgba(255, 255, 255, 0.6);
+  --footer-link: var(--color-azul-electrico);
+  --footer-border: rgba(255, 255, 255, 0.08);
+
+  /* Layout — single source of truth for all sections. Do not duplicate. */
+  --section-padding-y: clamp(3rem, 6vw, 5rem);
+  --section-padding-x: clamp(1rem, 4vw, 2rem);
+  --content-max: 960px;
+  --font-sans: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  color: var(--color-azul-electrico);
+  text-decoration: none;
+}
+
+a.btn {
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ─── Universal section structure ───────────────────────────────────────────
+ * Every section must use the same layout so borders/padding align across the page.
+ * Rule: section > section__inner > content. No custom padding or max-width in sections.
+ *
+ * - .section or .section.section--alt = outer wrapper (padding from variables only)
+ * - .section__inner = content boundary (max-width + horizontal margin). Same for hero and all sections.
+ * - Use only --section-padding-x, --section-padding-y, --content-max for layout.
+ ───────────────────────────────────────────────────────────────────────────── */
+.section {
+  padding: var(--section-padding-y) var(--section-padding-x);
+}
+
+.section--alt {
+  background-color: var(--color-bg-section);
+}
+
+.section__inner {
+  max-width: var(--content-max);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.section__title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 0.5rem;
+  line-height: 1.2;
+}
+
+/* Two-line title: larger so fade effect reads better */
+.section__title--two-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15em;
+  font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+}
+
+.section__title-line {
+  display: block;
+}
+
+/* Muted part of title — fade top to bottom (solid at top → transparent at bottom) */
+.section__title-muted {
+  font-weight: 700;
+  background: linear-gradient(
+    to bottom,
+    #374151 0%,
+    rgba(57, 76, 106, 0.8) 100%,
+    transparent 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Shimmer words ("chats", "ventas") — larger than rest to highlight */
+.section__title .section__title-shimmer {
+  font-size: 1.45em;
+}
+
+.section__subtitle {
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  margin: 0 0 1.5rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  text-align: center;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn,
+.btn * {
+  color: inherit;
+}
+
+.btn__label {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--color-cta-primary);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  background: var(--color-cta-primary-hover);
+  text-decoration: none;
+}
+
+.btn--secondary {
+  background: transparent;
+  color: var(--color-azul-electrico);
+  border: 2px solid var(--color-azul-electrico);
+}
+
+.btn--secondary:hover {
+  background: rgba(37, 99, 235, 0.08);
+  text-decoration: none;
+}
+
+/* Note: spacing between buttons is handled by the section layout (e.g. .hero__ctas gap) */
+
+/* Hero CTA layout — same size buttons */
+.hero__ctas .btn {
+  width: 100%;
+  max-width: 320px;
+  min-height: 42px;
+  padding: 0.5rem 1.25rem;
+  border-radius: 10px; /* match stripe wrapper radius */
+}
+
+/* Header CTA: reuse hero primary style but smaller footprint */
+.header__cta {
+  min-height: 36px;
+  padding: 0.4rem 0.75rem;    /* tighter horizontally so it’s less wide */
+  max-width: 140px;
+  width: auto;
+  font-size: 0.9rem;
+  color: #fff !important;
+  opacity: 0;
+  animation: header-cta-fade-in 0.5s ease-out 0.2s forwards;
+  transition: opacity 0.25s ease;
+}
+
+.header__cta,
+.header__cta * {
+  color: #fff !important;
+}
+
+@media (min-width: 720px) {
+  .hero__ctas .btn {
+    width: 260px;
+  }
+}
+
+/* Hero primary CTA: gradient + animated border stripe */
+.btn--hero-primary {
+  background: var(--color-cta-gradient);
+  color: #fff !important;
+  position: relative;
+  overflow: hidden; /* needed for marquee reveal */
+  isolation: isolate; /* keep stripe below label */
+}
+
+.btn--hero-primary,
+.btn--hero-primary * {
+  color: #fff !important;
+}
+
+/* Prevent the generic primary hover from flashing a solid color on gradient CTAs */
+.btn--hero-primary:hover {
+  background: var(--color-cta-gradient);
+  filter: brightness(1.04);
+  text-decoration: none;
+}
+
+.btn--hero-primary:active {
+  filter: brightness(0.98);
+}
+
+/* Border stripe wrapper (animated SVG stroke) */
+.cta-border-wrap {
+  position: relative;
+  display: inline-flex;
+  border-radius: 10px;
+}
+
+.cta-border-wrap > .btn {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes cta-stripe-dash {
+  to {
+    stroke-dashoffset: -466;
+  }
+}
+
+.cta-border-stripe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  pointer-events: none;
+  z-index: 2; /* above button fill so stripe is visible */
+}
+
+.cta-border-stripe rect {
+  animation: cta-stripe-dash 2.5s linear infinite;
+}
+
+/* Marquee overflow text: reveals hidden text as it moves */
+.btn--marquee-overflow .btn__label {
+  display: block;
+  overflow: hidden;
+  /* Fade text in/out at edges as it scrolls */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 1) 12%,
+    rgba(0, 0, 0, 1) 88%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 1) 12%,
+    rgba(0, 0, 0, 1) 88%,
+    transparent 100%
+  );
+}
+
+.btn__marquee {
+  display: block;
+  width: 100%;
+}
+
+.btn__marquee-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  will-change: transform;
+  animation: btn-marquee-scroll 9s linear infinite;
+}
+
+.btn__marquee-item {
+  white-space: nowrap;
+  padding-right: 2rem; /* space between repeats without breaking seamless loop */
+}
+
+@keyframes btn-marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Hero benefits marquee (saves space vs multi-line list) */
+.hero__benefits {
+  margin: 1rem auto 1.5rem;
+  max-width: 900px;
+}
+
+.hero__benefits-fade {
+  overflow: hidden;
+  /* Fade in/out at edges like the CTA */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 1) 10%,
+    rgba(0, 0, 0, 1) 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 0, 0, 1) 10%,
+    rgba(0, 0, 0, 1) 90%,
+    transparent 100%
+  );
+}
+
+.hero__benefits-track {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+  animation: hero-benefits-scroll 60s linear infinite;
+}
+
+.hero__benefits-gap {
+  display: inline-block;
+  width: 2rem;
+}
+
+.hero__benefit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  font-size: 0.975rem;
+  padding-right: 1.25rem;
+}
+
+.hero__benefit-check {
+  color: var(--color-azul-electrico);
+  font-weight: 900;
+}
+
+@keyframes hero-benefits-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Ensure outline button matches the filled button's inner height */
+.hero__ctas .btn--secondary {
+  padding-top: calc(0.5rem - 1px);
+  padding-bottom: calc(0.5rem - 1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-border-stripe rect { animation: none; }
+  .btn__marquee-track { animation: none; }
+  .hero__benefits-track { animation: none; }
+}
+
+/* List styling */
+.list--bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list--bullets li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.list--bullets li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--color-azul-electrico);
+  font-weight: 700;
+}
+
+/* Checks list (used in Hero) */
+.list--checks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list--checks li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.list--checks li::before {
+  content: "✓";
+  position: static;
+  flex: 0 0 auto;
+  color: var(--color-azul-electrico);
+  font-weight: 900;
+}
+
+/* Cards */
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .card-grid--2 { grid-template-columns: repeat(2, 1fr); }
+  .card-grid--3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+.card {
+  background: #fff;
+  border: 1px solid rgba(30, 58, 95, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.card__title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 0.5rem;
+}
+
+.card__text {
+  font-size: 0.9375rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Placeholder for lazy sections (preserve layout) */
+.lazy-placeholder {
+  min-height: 280px;
+  background: var(--color-bg-section);
+}
+
+/* Header */
+@keyframes header-cta-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--footer-border);
+  padding: 0.75rem var(--section-padding-x);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .header {
+    background: rgba(255, 255, 255, 0.92);
+  }
+}
+
+.header__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.header__logo {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--color-azul-profundo);
+  text-decoration: none;
+}
+
+.header__logo:hover {
+  text-decoration: none;
+  color: var(--color-azul-electrico);
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.header__nav a {
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.header__nav a:hover {
+  color: var(--color-azul-electrico);
+}
+
+@media (max-width: 640px) {
+  .header__nav a:not(.btn) { display: none; }
+}
+
+/* Footer */
+.footer {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  padding: var(--section-padding-y) var(--section-padding-x);
+  margin-top: auto;
+}
+
+.footer__inner {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer__brand {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer__muted {
+  color: var(--footer-muted);
+  font-size: 0.9375rem;
+  margin: 0 0 1.5rem;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer__links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.footer__links a {
+  color: var(--footer-link);
+}
+
+.footer__links a:hover {
+  text-decoration: underline;
+}
+
+.footer__copy {
+  color: var(--footer-muted);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  background: linear-gradient(180deg, var(--color-bg-hero-start) 0%, var(--color-bg-hero-mid) 35%, var(--color-blanco-limpio) 70%, var(--color-bg-hero-end) 100%);
+}
+
+/* Hero background paths — animated waves behind content */
+.hero-bg-paths__paths {
+  /* Full-width overlay inside the same hero section background */
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Optional: add class "debug-hero-layout" to <body> in DevTools to see bounds:
+   red = section, green = paths overlay, blue = content .section__inner */
+.debug-hero-layout .section.hero { outline: 2px solid rgba(255, 0, 0, 0.5); }
+.debug-hero-layout .hero-bg-paths__paths { outline: 2px solid rgba(0, 128, 0, 0.7); }
+.debug-hero-layout .section.hero .section__inner { outline: 2px solid rgba(0, 0, 255, 0.5); }
+
+.hero-bg-paths__svg {
+  width: 100%;
+  height: 100%;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--color-text-primary);
+  margin: 0 0 1rem;
+}
+
+.hero__content {
+  text-align: center;
+}
+
+.hero__subheadline {
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  margin: 0 0 1.5rem;
+  max-width: 560px;
+}
+
+.hero__subheadline,
+.hero__title {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero__ctas {
+  margin-bottom: 0.5rem;
+}
+
+.hero__ctas {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.btn + .btn {
+  margin-left: 0;
+}
+
+.hero__microcopy {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* Como funciona */
+.como-funciona__steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: step;
+}
+
+.como-funciona__step {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--footer-border);
+  counter-increment: step;
+}
+
+.como-funciona__step:last-child {
+  border-bottom: none;
+}
+
+.como-funciona__num {
+  font-weight: 700;
+  color: var(--color-azul-electrico);
+  margin-right: 0.25rem;
+}
+
+.como-funciona__title {
+  color: var(--color-text-primary);
+}
+
+.como-funciona__detail {
+  display: block;
+  color: var(--color-text-secondary);
+  font-size: 0.9375rem;
+  margin-top: 0.25rem;
+}
+
+.section__copy {
+  color: var(--color-text-secondary);
+  margin: 0 0 1rem;
+}
+
+.section__title--sm {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+}
+
+/* Pricing */
+.pricing-grid {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 640px) {
+  .pricing-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .pricing-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pricing-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid rgba(30, 58, 95, 0.12);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.pricing-card--popular {
+  border-color: var(--color-azul-electrico);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
+}
+
+.pricing-card__badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-cta-gradient);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+}
+
+.pricing-card__name {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem;
+}
+
+.pricing-card__price {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--color-azul-electrico);
+  margin: 0 0 0.5rem;
+}
+
+.pricing-card__period {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.pricing-card__tagline {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin: 0 0 1rem;
+}
+
+.pricing-card__features {
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+.pricing-card__features li {
+  margin-bottom: 0.35rem;
+}
+
+.pricing-card__result {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 1rem;
+}
+
+.pricing-card__cta {
+  width: 100%;
+}
+
+/* FAQ */
+.faq-list {
+  margin: 0;
+  padding: 0;
+}
+
+.faq-item {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--footer-border);
+}
+
+.faq-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.faq-item__q {
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 0.5rem;
+  font-size: 1.0625rem;
+}
+
+.faq-item__a {
+  color: var(--color-text-secondary);
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+/* CTA final */
+.cta-final {
+  background: linear-gradient(180deg, var(--color-bg-section) 0%, var(--color-azul-neon) 100%);
+}
+
+.cta-final__title {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
