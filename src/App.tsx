@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Header, Footer } from './components';
+import { Header, Footer, SocialProofToast, SalesAssistantWidget } from './components';
 import { LazySection } from './sections/LazySection';
 
 const Hero = lazy(() => import('./sections/Hero').then((m) => ({ default: m.Hero })));
@@ -11,6 +11,7 @@ const ComoFunciona = lazy(() => import('./sections/ComoFunciona').then((m) => ({
 const Pricing = lazy(() => import('./sections/Pricing').then((m) => ({ default: m.Pricing })));
 const AddOnSitioWeb = lazy(() => import('./sections/AddOnSitioWeb').then((m) => ({ default: m.AddOnSitioWeb })));
 const CasosDeUso = lazy(() => import('./sections/CasosDeUso').then((m) => ({ default: m.CasosDeUso })));
+const Testimonios = lazy(() => import('./sections/Testimonios').then((m) => ({ default: m.Testimonios })));
 const FAQ = lazy(() => import('./sections/FAQ').then((m) => ({ default: m.FAQ })));
 const CTAFinal = lazy(() => import('./sections/CTAFinal').then((m) => ({ default: m.CTAFinal })));
 
@@ -77,6 +78,12 @@ function App() {
           </Suspense>
         </LazySection>
 
+        <LazySection id="testimonios" placeholderMinHeight={400} className="section section--alt">
+          <Suspense fallback={<SectionFallback />}>
+            <Testimonios />
+          </Suspense>
+        </LazySection>
+
         <LazySection id="faq" placeholderMinHeight={360} className="section section--alt">
           <Suspense fallback={<SectionFallback />}>
             <FAQ />
@@ -90,6 +97,8 @@ function App() {
         </LazySection>
       </main>
       <Footer />
+      <SocialProofToast />
+      <SalesAssistantWidget />
     </>
   );
 }

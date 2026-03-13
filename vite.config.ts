@@ -14,4 +14,12 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    proxy: {
+      '/api/chat': {
+        target: 'http://localhost:5174',
+        changeOrigin: true,
+      },
+    },
+  },
 })

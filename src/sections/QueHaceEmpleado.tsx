@@ -1,4 +1,5 @@
 import { Card } from '../components';
+import { FlowField } from '../components/FlowField';
 
 export function QueHaceEmpleado() {
   const items = [
@@ -29,15 +30,23 @@ export function QueHaceEmpleado() {
   ];
 
   return (
-    <div className="section__inner">
-      <h2 className="section__title">
-        Todo lo que tu empleado digital puede hacer por tu empresa
-      </h2>
-      <div className="card-grid card-grid--2">
-        {items.map((item, i) => (
-          <Card key={i} title={item.title} text={item.text} />
-        ))}
+    <>
+      <FlowField
+        hueStart={210}
+        hueRange={160}
+        count={1200}
+        bg="8, 12, 28"
+      />
+      <div className="section__inner que-hace__content">
+        <h2 className="section__title que-hace__title">
+          Todo lo que tu empleado digital puede hacer por tu empresa
+        </h2>
+        <div className="card-grid card-grid--2">
+          {items.map((item, i) => (
+            <Card key={i} title={item.title} text={item.text} className="card--glass" />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }

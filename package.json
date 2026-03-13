@@ -7,14 +7,19 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "api": "node --env-file=.env server/groq-server.mjs"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",
+    "@types/three": "^0.183.1",
+    "groq-sdk": "^1.1.1",
+    "lucide-react": "^0.577.0",
     "motion": "^12.35.2",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "tailwind": "^4.0.0"
+    "tailwind": "^4.0.0",
+    "three": "^0.183.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
