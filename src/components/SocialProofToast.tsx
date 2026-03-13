@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 
 const NAMES = [
@@ -47,14 +47,11 @@ const VISIBLE_FOR   = 3_000;
 
 export function SocialProofToast() {
   const [toast, setToast] = useState<ToastData | null>(null);
-  const [counter, setCounter] = useState(0);
+  const counterRef = useRef(0);
 
   const show = useCallback(() => {
-    setCounter((c) => {
-      const next = c + 1;
-      setToast(buildToast(next));
-      return next;
-    });
+    counterRef.current += 1;
+    setToast(buildToast(counterRef.current));
   }, []);
 
   /* Auto-dismiss after VISIBLE_FOR ms */

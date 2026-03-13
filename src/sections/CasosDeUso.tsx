@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion, type Variants } from 'motion/react';
 
 const CASOS = [
   {
@@ -43,7 +43,7 @@ const CASOS = [
   },
 ];
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 28 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
 };
