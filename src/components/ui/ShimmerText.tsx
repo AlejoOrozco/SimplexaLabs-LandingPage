@@ -1,7 +1,3 @@
-/**
- * Shimmer text — animated gradient sweep across text.
- * Based on Kokonut UI ShimmerText (MIT), adapted for SimpLexaLabs palette.
- */
 import { motion } from 'motion/react';
 import { cn } from '@/lib/utils';
 
@@ -10,6 +6,9 @@ interface ShimmerTextProps {
   className?: string;
 }
 
+/**
+ * Shimmer text — animated gradient sweep across text.
+ */
 export function ShimmerText({ text, className }: ShimmerTextProps) {
   return (
     <motion.span

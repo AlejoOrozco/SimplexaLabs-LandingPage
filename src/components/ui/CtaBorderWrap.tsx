@@ -1,15 +1,18 @@
 import { useId, type ReactNode } from 'react';
+import { cn } from '@/lib/utils';
 
-/** Path length for the rounded rect (viewBox 0 0 200 48, rect inset 2, rx 8) ≈ 466 */
 const BORDER_PATH_LENGTH = 466;
 const STRIPE_LENGTH = 48;
 
-type Props = { children: ReactNode; outline?: boolean };
+interface CtaBorderWrapProps {
+  children: ReactNode;
+  outline?: boolean;
+}
 
-export function CtaBorderWrap({ children, outline = false }: Props) {
+export function CtaBorderWrap({ children, outline = false }: CtaBorderWrapProps) {
   const gradientId = useId();
   return (
-    <span className={`cta-border-wrap${outline ? ' cta-border-wrap--outline' : ''}`}>
+    <span className={cn('cta-border-wrap', outline && 'cta-border-wrap--outline')}>
       <svg
         className="cta-border-stripe"
         viewBox="0 0 200 48"
@@ -43,4 +46,3 @@ export function CtaBorderWrap({ children, outline = false }: Props) {
     </span>
   );
 }
-

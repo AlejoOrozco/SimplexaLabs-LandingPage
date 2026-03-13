@@ -1,28 +1,12 @@
+import type { PricingCardProps } from '@/types';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import { useRef } from 'react';
-import { cn } from '../lib/utils';
-import { Button } from './Button';
+import { cn } from '@/lib/utils';
+import { Button } from './ui';
 
 const TILT_MAX = 9;
 const TILT_SPRING = { stiffness: 300, damping: 28 } as const;
 const GLOW_SPRING = { stiffness: 180, damping: 22 } as const;
-
-export interface PricingCardProps {
-  name: string;
-  price: string;
-  period: string;
-  tagline: string;
-  features: string[];
-  result: string;
-  cta: string;
-  ctaHref: string;
-  popular?: boolean;
-  /** Accent color for glow/shimmer (hex) */
-  color?: string;
-  dimmed?: boolean;
-  onHoverStart?: () => void;
-  onHoverEnd?: () => void;
-}
 
 export function PricingCard({
   name,

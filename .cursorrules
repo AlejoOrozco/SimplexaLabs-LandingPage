@@ -1,0 +1,49 @@
+# SimplexaLabs Landing Page — Cursor Rules
+
+## Architecture (Feature-Sliced)
+
+- **`src/components/ui/`** — Low-level, reusable atomic components (Button, Card, CtaBorderWrap, ShimmerText). No business logic.
+- **`src/components/layout/`** — Layout pieces (Header, Footer).
+- **`src/features/[feature-name]/`** — Encapsulated flows: components, hooks, services, constants, types (e.g. `features/chat`).
+- **`src/hooks/`** — Global shared hooks (e.g. useIntersectionObserver).
+- **`src/services/`** — External API clients and wrappers (e.g. `services/api/chatClient.ts`).
+- **`src/lib/`** — Utilities: `cn()`, `logger`. No business logic.
+- **`src/types/`** — Centralized TypeScript interfaces. Prefer importing from `@/types` for shared types.
+- **`src/sections/`** — Page sections (composition only). Section-specific constants can live in the section file or a co-located `constants.ts`.
+
+When adding new code, place it in the correct slice. New features → `features/[name]`. New shared UI → `components/ui` or `components/`.
+
+## TypeScript
+
+- Use **strict typing**. Avoid `any` at all costs.
+- Prefer **discriminated unions** for state (e.g. `{ status: 'idle' } | { status: 'loading' } | { status: 'error'; message: string }`).
+- Put shared interfaces in `src/types/` and re-export from `types/index.ts`.
+
+## Components & class names
+
+- Use **`cn()`** from `@/lib/utils` for dynamic class names (Tailwind-safe merging).
+- Prefer **composition** and small, focused components. Avoid prop drilling; use Context only when necessary.
+
+## Constants & config
+
+- Move **large config objects** out of TSX into `constants/` or feature-level `constants.ts`.
+- Keep section/feature constants close to where they’re used when they’re not shared.
+
+## Error handling
+
+- Use **`logger`** from `@/lib/logger` for errors (e.g. `logger.error(message, context)`). Do not use raw `console.error` in app code.
+- The app is wrapped in **ErrorBoundary**; critical UI can use error boundaries for granular fallbacks.
+
+## Naming
+
+- Use **declarative names**: e.g. `isPanelOpen`, `hasNewMessage` instead of `open`, `hasNew`.
+- Prefer **clear, readable names** over brevity.
+
+## Accessibility & semantics
+
+- Use **semantic HTML** (main, section, article, aside) and **ARIA** where needed (aria-label, aria-live, aria-expanded).
+- Ensure interactive elements (chat, accordions, CTAs) have appropriate labels and roles.
+
+## Marketing (existing rule)
+
+- Act as a professional marketer for this landing: prioritize conversion, clarity, and positioning. Suggest better copy or structure when relevant.

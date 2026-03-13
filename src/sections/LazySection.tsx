@@ -1,8 +1,11 @@
-import { useState, useEffect, useRef, type ReactNode } from 'react';
+import { useRef, type ReactNode } from 'react';
+import { useIntersectionObserver } from '@/hooks';
 
 interface LazySectionProps {
   id: string;
   children: ReactNode;
+  /** Accessible name for the section (e.g. "Preguntas frecuentes"). Falls back to id if omitted. */
+  ariaLabel?: string;
   className?: string;
   placeholderMinHeight?: number;
   rootMargin?: string;
@@ -15,36 +18,33 @@ interface LazySectionProps {
 export function LazySection({
   id,
   children,
+  ariaLabel,
   className = '',
   placeholderMinHeight = 320,
   rootMargin = '120px',
 }: LazySectionProps) {
-  const [inView, setInView] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setInView(true);
-      },
-      { rootMargin, threshold: 0 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [rootMargin]);
+  const ref = useRef<HTMLElement>(null);
+  const inView = useIntersectionObserver(ref, {
+    rootMargin,
+    threshold: 0,
+    triggerOnce: true,
+  });
 
   return (
     <section
       id={id}
       ref={ref}
       className={className}
-      aria-label={id}
+      aria-label={ariaLabel ?? id}
     >
-      {inView ? children : <div className="lazy-placeholder" style={{ minHeight: placeholderMinHeight }} />}
+      {inView ? (
+        children
+      ) : (
+        <div
+          className="lazy-placeholder"
+          style={{ minHeight: placeholderMinHeight }}
+        />
+      )}
     </section>
   );
 }

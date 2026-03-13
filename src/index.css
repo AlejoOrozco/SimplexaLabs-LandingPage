@@ -891,6 +891,40 @@ a:hover {
   background: var(--color-bg-section);
 }
 
+/* Error Boundary fallback */
+.error-boundary-fallback {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+  background: var(--color-blanco-limpio);
+  color: var(--color-text-primary);
+}
+.error-boundary-fallback h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.error-boundary-fallback p {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+.error-boundary-fallback button {
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  border: none;
+  background: var(--color-azul-electrico);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+.error-boundary-fallback button:hover {
+  background: var(--color-cta-primary-hover, #1d4ed8);
+}
+
 /* Header */
 @keyframes header-cta-fade-in {
   from {
@@ -2050,6 +2084,23 @@ a:hover {
   padding: 0.15rem 0.5rem;
   border-radius: 999px;
   white-space: nowrap;
+}
+
+.sp-toast__plan--starter {
+  color: #2563eb;
+  background: rgba(37, 99, 235, 0.1);
+}
+.sp-toast__plan--medium {
+  color: #7c3aed;
+  background: rgba(124, 58, 237, 0.1);
+}
+.sp-toast__plan--premium {
+  color: #1e3a5f;
+  background: rgba(30, 58, 95, 0.1);
+}
+.sp-toast__plan--enterprise {
+  color: #0d9488;
+  background: rgba(13, 148, 136, 0.1);
 }
 
 .sp-toast__meta {

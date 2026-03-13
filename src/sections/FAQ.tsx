@@ -1,35 +1,12 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-
-const FAQ_ITEMS = [
-  {
-    q: '¿Esto reemplaza a mi equipo?',
-    a: 'No. Automatiza la parte repetitiva para que tu equipo se enfoque en los casos de mayor valor.',
-  },
-  {
-    q: '¿Y si mis clientes quieren hablar con una persona?',
-    a: 'Perfecto. El empleado digital puede hacer el primer filtro y luego pasar la conversación al humano cuando sea necesario.',
-  },
-  {
-    q: '¿Eso funciona para mi negocio?',
-    a: 'Si recibes leads, preguntas, citas o ventas por WhatsApp, Instagram o web, sí hay una oportunidad clara para automatizar.',
-  },
-  {
-    q: '¿Es difícil implementarlo?',
-    a: 'No. Nosotros configuramos la lógica base para que empieces rápido y sin enredarte.',
-  },
-  {
-    q: '¿Por qué no simplemente usar otro chatbot?',
-    a: 'Porque SimpLexaLabs está posicionado como un empleado digital con IA: responde, califica, hace seguimiento y ayuda a vender. No solo "contesta mensajes".',
-  },
-];
+import { FAQ_ITEMS } from '@/constants/faq';
 
 export function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
     <div className="section__inner faq-section__inner">
-      {/* Header */}
       <motion.div
         className="faq__header"
         initial={{ opacity: 0, y: 24 }}
@@ -44,7 +21,6 @@ export function FAQ() {
         </p>
       </motion.div>
 
-      {/* Accordion */}
       <motion.dl
         className="faq__accordion"
         initial="hidden"

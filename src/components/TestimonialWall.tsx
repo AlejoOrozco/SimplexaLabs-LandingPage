@@ -3,12 +3,7 @@
  * Two rows: first scrolls left, second scrolls right. Pauses on hover.
  */
 
-export interface Testimonial {
-  name: string;
-  handle: string;
-  avatar: string;
-  text: string;
-}
+import type { Testimonial } from '@/types';
 
 interface TestimonialWallProps {
   rows: [Testimonial[], Testimonial[]];

@@ -1,5 +1,5 @@
-import { TestimonialWall } from '../components/TestimonialWall';
-import type { Testimonial } from '../components/TestimonialWall';
+import type { Testimonial } from '@/types';
+import { TestimonialWall } from '../components';
 
 const row1: Testimonial[] = [
   {

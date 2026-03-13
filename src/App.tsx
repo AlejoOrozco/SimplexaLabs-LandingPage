@@ -1,7 +1,10 @@
 import { lazy, Suspense } from 'react';
-import { Header, Footer, SocialProofToast, SalesAssistantWidget } from './components';
+import { Header, Footer, SocialProofToast } from './components';
 import { LazySection } from './sections/LazySection';
 
+const ChatWidget = lazy(() =>
+  import('@/features/chat').then((m) => ({ default: m.ChatWidget }))
+);
 const Hero = lazy(() => import('./sections/Hero').then((m) => ({ default: m.Hero })));
 const Problema = lazy(() => import('./sections/Problema').then((m) => ({ default: m.Problema })));
 const Solucion = lazy(() => import('./sections/Solucion').then((m) => ({ default: m.Solucion })));
@@ -24,73 +27,73 @@ function App() {
     <>
       <Header />
       <main>
-        <LazySection id="hero" placeholderMinHeight={420} className="section hero">
+        <LazySection id="hero" ariaLabel="Inicio" placeholderMinHeight={420} className="section hero">
           <Suspense fallback={<SectionFallback />}>
             <Hero />
           </Suspense>
         </LazySection>
 
-        <LazySection id="problema" placeholderMinHeight={320} className="section section--alt">
+        <LazySection id="problema" ariaLabel="El problema" placeholderMinHeight={320} className="section section--alt">
           <Suspense fallback={<SectionFallback />}>
             <Problema />
           </Suspense>
         </LazySection>
 
-        <LazySection id="solucion" placeholderMinHeight={260} className="section">
+        <LazySection id="solucion" ariaLabel="La solución" placeholderMinHeight={260} className="section">
           <Suspense fallback={<SectionFallback />}>
             <Solucion />
           </Suspense>
         </LazySection>
 
-        <LazySection id="que-hace-empleado" placeholderMinHeight={380} className="section section--alt">
+        <LazySection id="que-hace-empleado" ariaLabel="Qué hace el empleado digital" placeholderMinHeight={380} className="section section--alt">
           <Suspense fallback={<SectionFallback />}>
             <QueHaceEmpleado />
           </Suspense>
         </LazySection>
 
-        <LazySection id="beneficios" placeholderMinHeight={360} className="section">
+        <LazySection id="beneficios" ariaLabel="Beneficios" placeholderMinHeight={360} className="section">
           <Suspense fallback={<SectionFallback />}>
             <BeneficiosROI />
           </Suspense>
         </LazySection>
 
-        <LazySection id="como-funciona" placeholderMinHeight={320} className="section section--alt">
+        <LazySection id="como-funciona" ariaLabel="Cómo funciona" placeholderMinHeight={320} className="section section--alt">
           <Suspense fallback={<SectionFallback />}>
             <ComoFunciona />
           </Suspense>
         </LazySection>
 
-        <LazySection id="pricing" placeholderMinHeight={400} className="section">
+        <LazySection id="pricing" ariaLabel="Planes y precios" placeholderMinHeight={400} className="section">
           <Suspense fallback={<SectionFallback />}>
             <Pricing />
           </Suspense>
         </LazySection>
 
-        <LazySection id="addon-sitio" placeholderMinHeight={320} className="section section--alt">
+        <LazySection id="addon-sitio" ariaLabel="Sitio web con IA" placeholderMinHeight={320} className="section section--alt">
           <Suspense fallback={<SectionFallback />}>
             <AddOnSitioWeb />
           </Suspense>
         </LazySection>
 
-        <LazySection id="casos-de-uso" placeholderMinHeight={340} className="section">
+        <LazySection id="casos-de-uso" ariaLabel="Casos de uso" placeholderMinHeight={340} className="section">
           <Suspense fallback={<SectionFallback />}>
             <CasosDeUso />
           </Suspense>
         </LazySection>
 
-        <LazySection id="testimonios" placeholderMinHeight={400} className="section section--alt">
+        <LazySection id="testimonios" ariaLabel="Testimonios" placeholderMinHeight={400} className="section section--alt">
           <Suspense fallback={<SectionFallback />}>
             <Testimonios />
           </Suspense>
         </LazySection>
 
-        <LazySection id="faq" placeholderMinHeight={360} className="section section--alt">
+        <LazySection id="faq" ariaLabel="Preguntas frecuentes" placeholderMinHeight={360} className="section section--alt">
           <Suspense fallback={<SectionFallback />}>
             <FAQ />
           </Suspense>
         </LazySection>
 
-        <LazySection id="cta-final" placeholderMinHeight={280} className="section cta-final">
+        <LazySection id="cta-final" ariaLabel="Empezar ahora" placeholderMinHeight={280} className="section cta-final">
           <Suspense fallback={<SectionFallback />}>
             <CTAFinal />
           </Suspense>
@@ -98,7 +101,9 @@ function App() {
       </main>
       <Footer />
       <SocialProofToast />
-      <SalesAssistantWidget />
+      <Suspense fallback={null}>
+        <ChatWidget />
+      </Suspense>
     </>
   );
 }

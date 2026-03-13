@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { cn } from '@/lib/utils';
 
 type ButtonVariant = 'primary' | 'secondary';
 
@@ -13,18 +14,18 @@ interface ButtonProps {
 /**
  * Reusable button or link styled as CTA.
  * Use href for navigation (renders <a>), omit for <button>.
- * Pass className to override or add styles for a single button (e.g. className="hero__cta--special").
+ * Pass className to override or add styles for a single button.
  */
 export function Button({
   variant = 'primary',
   href,
   type = 'button',
-  className = '',
+  className,
   children,
 }: ButtonProps) {
   const baseClass = 'btn';
   const variantClass = variant === 'primary' ? 'btn--primary' : 'btn--secondary';
-  const fullClass = [baseClass, variantClass, className].filter(Boolean).join(' ');
+  const fullClass = cn(baseClass, variantClass, className);
 
   if (href !== undefined) {
     return (
