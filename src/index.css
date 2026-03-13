@@ -640,16 +640,19 @@ a:hover {
 }
 
 @media (min-width: 900px) {
+  /* 2-col grid: row1 = cards 1+2, row2 = cards 3+4, row3 = card 5 full width */
   .casos__bento {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Row 1: first card spans 2 cols, second spans 1 */
-  .casos__bento > *:nth-child(1) {
-    grid-column: span 2;
+  .casos__bento > *:nth-child(1),
+  .casos__bento > *:nth-child(2),
+  .casos__bento > *:nth-child(3),
+  .casos__bento > *:nth-child(4) {
+    grid-column: span 1;
   }
 
-  /* Row 2: last card spans 2 cols */
+  /* Last card spans full width */
   .casos__bento > *:nth-child(5) {
     grid-column: span 2;
   }
