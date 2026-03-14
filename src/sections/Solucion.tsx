@@ -38,6 +38,16 @@ export function Solucion() {
           stagger={0.06}
           startDelay={1.8}
         />
+        <RevealText
+          as="p"
+          className="section__copy"
+          lines={[
+            'Y además — generamos tu contenido de marketing mensualmente con IA:',
+            'posts, ads, reels y emails listos para publicar, con la voz de tu marca.',
+          ]}
+          stagger={0.06}
+          startDelay={2.6}
+        />
       </div>
     </>
   );

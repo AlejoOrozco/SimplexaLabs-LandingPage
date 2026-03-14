@@ -1,12 +1,14 @@
 import { ShimmerText, FadeInWords, BlurBlobs } from '../components';
 
-const painPoints = [
+const PAIN_POINTS = [
   'Demasiados mensajes en WhatsApp',
-  'Leads que se enfrían',
   'Citas que no se concretan',
-  'Preguntas repetitivas que quitan tiempo',
   'Seguimiento manual que nunca se hace',
+  'Leads que se enfrían',
+  'Preguntas repetitivas que quitan tiempo',
   'Ventas perdidas por responder tarde',
+  'Contenido de redes que nunca se publica',
+  'Sin sistema para saber qué leads están calientes',
 ];
 
 export function Problema() {
@@ -45,7 +47,7 @@ export function Problema() {
           </div>
 
           <ul className="problema__points">
-            {painPoints.map((point) => (
+            {PAIN_POINTS.map((point) => (
               <li key={point} className="problema__point">
                 <span className="problema__point-x" aria-hidden="true">✕</span>
                 {point}

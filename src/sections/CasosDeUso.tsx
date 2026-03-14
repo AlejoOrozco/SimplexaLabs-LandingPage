@@ -34,11 +34,27 @@ const CASOS = [
     wide: false,
   },
   {
-    emoji: '📍',
-    title: 'Negocios locales',
-    text: 'Convierte WhatsApp en un canal más ordenado, rápido y rentable para cerrar más ventas.',
-    roi: 'Atención 24/7 sin costo extra',
+    emoji: '🏠',
+    title: 'Inmobiliarias y constructoras',
+    text: 'Califica leads, agenda visitas y hace seguimiento automático para no perder una venta.',
+    roi: '+5× leads calificados',
     accent: 'caso--purple',
+    wide: false,
+  },
+  {
+    emoji: '🚗',
+    title: 'Concesionarios y seguros',
+    text: 'Agenda pruebas de manejo, cotizaciones y citas sin que se pierda ningún mensaje.',
+    roi: '+50% citas de prueba',
+    accent: 'caso--amber',
+    wide: false,
+  },
+  {
+    emoji: '🍽️',
+    title: 'Restaurantes y food service',
+    text: 'Toma reservas, responde horarios y pedidos sin saturar el teléfono ni perder llamadas.',
+    roi: '−80% llamadas perdidas',
+    accent: 'caso--rose',
     wide: true,
   },
 ];
@@ -84,13 +100,20 @@ export function CasosDeUso() {
           <CasoCardInner item={CASOS[1]} />
         </motion.div>
 
-        {/* Row 2: three equal cards */}
-        {CASOS.slice(2, 5).map((item) => (
-          <motion.div key={item.title} variants={cardVariants} className={`caso-card ${item.accent}`}>
+        {/* Row 2: four cards */}
+        {CASOS.slice(2, 6).map((item) => (
+          <motion.div key={item.title} variants={cardVariants} className={`caso-card ${item.accent} ${item.wide ? 'caso-card--wide' : ''}`}>
             <CasoCardInner item={item} />
           </motion.div>
         ))}
+        {/* Row 3: last card (Restaurantes) */}
+        <motion.div variants={cardVariants} className={`caso-card ${CASOS[6].accent}`}>
+          <CasoCardInner item={CASOS[6]} />
+        </motion.div>
       </motion.div>
+      <p className="casos__footer">
+        Atención 24/7 sin costo extra · Para cualquier negocio que reciba mensajes
+      </p>
     </div>
   );
 }

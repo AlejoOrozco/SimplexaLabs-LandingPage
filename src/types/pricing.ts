@@ -7,6 +7,10 @@ export interface PricingCardProps {
   price: string;
   period: string;
   tagline: string;
+  /** Optional line under price (e.g. "≈ $820K COP/mes") */
+  priceNote?: string;
+  /** Optional setup fee (e.g. "Setup fee único: $497 USD") */
+  setupFee?: string;
   features: string[];
   result: string;
   cta: string;

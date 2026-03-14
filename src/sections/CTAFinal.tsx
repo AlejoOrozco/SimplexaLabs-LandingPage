@@ -1,10 +1,12 @@
 import { motion } from 'motion/react';
 import { Button, CtaBorderWrap } from '../components';
+import { WHATSAPP_URL } from '../constants';
 
 const STATS = [
   { value: '24/7', label: 'Atención sin parar' },
   { value: '3×', label: 'Más leads calificados' },
   { value: '−80%', label: 'Tiempo en tareas repetitivas' },
+  { value: '+40%', label: 'Conversión de leads' },
 ];
 
 export function CTAFinal() {
@@ -68,14 +70,14 @@ export function CTAFinal() {
           <Button href="#pricing" variant="primary" className="btn--hero-primary btn--marquee-overflow">
             <span className="btn__marquee" aria-label="Comienza tu prueba gratis">
               <span className="btn__marquee-track">
-                <span className="btn__marquee-item">Comienza tu prueba gratis</span>
-                <span className="btn__marquee-item" aria-hidden="true">Comienza tu prueba gratis</span>
+                <span className="btn__marquee-item">Comienza tu prueba gratis →</span>
+                <span className="btn__marquee-item" aria-hidden="true">Comienza tu prueba gratis →</span>
               </span>
             </span>
           </Button>
         </CtaBorderWrap>
-        <Button href="mailto:hola@simplexalabs.com" variant="secondary">
-          Hablar con ventas
+        <Button href={WHATSAPP_URL} variant="secondary" target="_blank" rel="noopener noreferrer">
+          Hablar con ventas →
         </Button>
       </motion.div>
 

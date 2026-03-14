@@ -13,6 +13,8 @@ export function PricingCard({
   price,
   period,
   tagline,
+  priceNote,
+  setupFee,
   features,
   result,
   cta,
@@ -100,6 +102,8 @@ export function PricingCard({
       <p className="pricing-card__price">
         {price}<span className="pricing-card__period">{period}</span>
       </p>
+      {priceNote && <p className="pricing-card__price-note">{priceNote}</p>}
+      {setupFee && <p className="pricing-card__setup-fee">{setupFee}</p>}
       <p className="pricing-card__tagline">{tagline}</p>
       <ul className="list--bullets pricing-card__features">
         {features.map((f, i) => (

@@ -102,6 +102,19 @@ a:hover {
   background-color: var(--color-bg-section);
 }
 
+/* Full-bleed section backgrounds (fill entire section, not just .section__inner) */
+.section--crm {
+  background: rgba(226, 232, 240, 0.4);
+}
+
+.section--marketing-content {
+  background: linear-gradient(180deg, #1e3a5f 0%, #0f172a 100%);
+}
+
+.section--programa-fundador {
+  background: linear-gradient(180deg, #ede9fe 0%, #ddd6fe 50%, #c4b5fd 100%);
+}
+
 .section__inner {
   max-width: var(--content-max);
   margin-left: auto;
@@ -640,7 +653,7 @@ a:hover {
 }
 
 @media (min-width: 900px) {
-  /* 2-col grid: row1 = cards 1+2, row2 = cards 3+4, row3 = card 5 full width */
+  /* 2-col grid: row1 = 1+2, row2 = 3+4, row3 = 5+6, row4 = card 7 full width */
   .casos__bento {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -648,12 +661,13 @@ a:hover {
   .casos__bento > *:nth-child(1),
   .casos__bento > *:nth-child(2),
   .casos__bento > *:nth-child(3),
-  .casos__bento > *:nth-child(4) {
+  .casos__bento > *:nth-child(4),
+  .casos__bento > *:nth-child(5),
+  .casos__bento > *:nth-child(6) {
     grid-column: span 1;
   }
 
-  /* Last card spans full width */
-  .casos__bento > *:nth-child(5) {
+  .casos__bento > *:nth-child(7) {
     grid-column: span 2;
   }
 }
@@ -726,6 +740,16 @@ a:hover {
 .caso--purple::after   { background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(147, 51, 234, 0.07) 0%, transparent 70%); }
 .caso--purple:hover    { box-shadow: 0 12px 40px rgba(147, 51, 234, 0.12); }
 
+.caso--amber::before   { background: #d97706; }
+.caso--amber::after   { background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(217, 119, 6, 0.07) 0%, transparent 70%); }
+.caso--amber:hover     { box-shadow: 0 12px 40px rgba(217, 119, 6, 0.12); }
+.caso--amber .caso-card__roi { background: rgba(217, 119, 6, 0.07); color: #b45309; border-color: rgba(217, 119, 6, 0.18); }
+
+.caso--rose::before    { background: #e11d48; }
+.caso--rose::after    { background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(225, 29, 72, 0.07) 0%, transparent 70%); }
+.caso--rose:hover      { box-shadow: 0 12px 40px rgba(225, 29, 72, 0.12); }
+.caso--rose .caso-card__roi { background: rgba(225, 29, 72, 0.07); color: #be123c; border-color: rgba(225, 29, 72, 0.18); }
+
 /* Card internals */
 .caso-card__top {
   display: flex;
@@ -783,6 +807,14 @@ a:hover {
   color: var(--color-text-secondary);
   line-height: 1.65;
   margin: 0;
+}
+
+.casos__footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-top: 1.5rem;
+  margin-bottom: 0;
 }
 
 /* ── RevealText animation ───────────────────────────────────────────── */
@@ -1539,6 +1571,11 @@ a:hover {
   max-width: 280px;
 }
 
+.addon-section__cta-note--above {
+  margin-bottom: 1rem;
+  max-width: 360px;
+}
+
 /* Website mockup */
 .addon-section__mockup {
   position: relative;
@@ -1640,6 +1677,62 @@ a:hover {
   grid-column: 1 / -1;
 }
 
+.pricing-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-tab {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(30, 58, 95, 0.2);
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--color-text-primary);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.pricing-tab:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: var(--color-azul-electrico);
+}
+
+.pricing-tab--active {
+  background: var(--color-azul-electrico);
+  border-color: var(--color-azul-electrico);
+  color: #fff;
+}
+
+.pricing-tab--active:hover {
+  background: var(--color-cta-primary-hover, #1d4ed8);
+  border-color: var(--color-cta-primary-hover, #1d4ed8);
+}
+
+.pricing-legal {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin: 1.5rem 0 0.75rem;
+  max-width: 720px;
+}
+
+.pricing-cta-note {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.pricing-cta-note a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.pricing-cta-note a:hover {
+  text-decoration: underline;
+}
+
 .pricing-grid {
   display: grid;
   gap: 1.5rem;
@@ -1722,6 +1815,8 @@ a:hover {
 
 .pricing-card .pricing-card__name,
 .pricing-card .pricing-card__price,
+.pricing-card .pricing-card__price-note,
+.pricing-card .pricing-card__setup-fee,
 .pricing-card .pricing-card__tagline,
 .pricing-card .pricing-card__features,
 .pricing-card .pricing-card__result,
@@ -1788,6 +1883,18 @@ a:hover {
   font-size: 1rem;
   font-weight: 600;
   color: var(--color-text-secondary);
+}
+
+.pricing-card__price-note {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin: 0 0 0.25rem;
+}
+
+.pricing-card__setup-fee {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  margin: 0 0 0.5rem;
 }
 
 .pricing-card__tagline {
@@ -2501,4 +2608,300 @@ a:hover {
   .chat-fab-wrap {
     right: 0.75rem;
   }
+}
+
+/* ─── CRM section ─────────────────────────────────────────────────────────── */
+.crm-section__lead {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 0.5rem;
+}
+
+.crm-section__headline {
+  margin-top: 1rem;
+}
+
+.crm-section__subheadline {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin: 0 0 1.5rem;
+}
+
+.crm-section__grid {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .crm-section__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.crm-feature {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid rgba(30, 58, 95, 0.08);
+}
+
+.crm-feature__icon {
+  flex-shrink: 0;
+  color: var(--color-azul-electrico);
+}
+
+.crm-feature__title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0 0 0.35rem;
+}
+
+.crm-feature__text {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.crm-section__cta {
+  margin-top: 2rem;
+}
+
+/* ─── Marketing Content section (dark) ───────────────────────────────────── */
+.marketing-content__inner {
+  color: #fff;
+}
+
+.marketing-content__title {
+  color: #fff;
+}
+
+.marketing-content__headline {
+  font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0 0 0.35rem;
+}
+
+.marketing-content__subtitle {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 1rem;
+}
+
+.marketing-content__inner .section__subtitle {
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.5rem;
+}
+
+.marketing-content__grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 640px) {
+  .marketing-content__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.marketing-content__card {
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+}
+
+.marketing-content__card-icon {
+  display: inline-flex;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.5rem;
+}
+
+.marketing-content__card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 0.35rem;
+}
+
+.marketing-content__card-text {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.marketing-content__cierre {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 1.5rem 0 0.5rem;
+  font-style: italic;
+}
+
+.marketing-content__cta .btn--primary {
+  background: #fff;
+  color: #1e3a5f;
+  border-color: #fff;
+}
+
+.marketing-content__cta .btn--primary:hover {
+  background: rgba(255, 255, 255, 0.9);
+  color: #1e3a5f;
+}
+
+/* ─── Programa Fundador section ──────────────────────────────────────────── */
+.programa-fundador__inner {
+  color: #1e3a5f;
+}
+
+.programa-fundador__badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.75rem;
+  background: var(--color-morado-ai);
+  color: #fff;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+
+.programa-fundador__title {
+  color: #1e3a5f;
+}
+
+.programa-fundador__lead {
+  color: #334155;
+  margin-bottom: 1.5rem;
+}
+
+.programa-fundador__benefits {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .programa-fundador__benefits {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.programa-fundador__benefit {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+.programa-fundador__benefit-icon {
+  flex-shrink: 0;
+  color: var(--color-morado-ai);
+}
+
+.programa-fundador__benefit-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e3a5f;
+  margin: 0 0 0.35rem;
+}
+
+.programa-fundador__benefit-text {
+  font-size: 0.875rem;
+  color: #475569;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.programa-fundador__spots {
+  margin-bottom: 1.5rem;
+}
+
+.programa-fundador__spots-bar {
+  height: 10px;
+  background: rgba(30, 58, 95, 0.15);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.programa-fundador__spots-fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #6d28d9, var(--color-morado-ai));
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.programa-fundador__spots-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1e3a5f;
+  margin: 0;
+}
+
+.programa-fundador__table-wrap {
+  overflow-x: auto;
+  margin-bottom: 1rem;
+}
+
+.programa-fundador__table {
+  width: 100%;
+  min-width: 280px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.programa-fundador__table th,
+.programa-fundador__table td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(30, 58, 95, 0.15);
+}
+
+.programa-fundador__table th {
+  font-weight: 700;
+  color: #1e3a5f;
+}
+
+.programa-fundador__table td:first-child {
+  font-weight: 500;
+}
+
+.programa-fundador__legal {
+  font-size: 0.75rem;
+  color: #475569;
+  margin: 0 0 1rem;
+  max-width: 640px;
+}
+
+.programa-fundador__cta .btn--primary {
+  background: var(--color-morado-ai);
+  border-color: var(--color-morado-ai);
+  color: #fff;
+}
+
+.programa-fundador__cta .btn--primary:hover {
+  background: #6d28d9;
+  border-color: #6d28d9;
+}
+
+.programa-fundador__cta-note {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+}
+
+.programa-fundador__cta-note a {
+  color: #1e3a5f;
+  font-weight: 600;
 }

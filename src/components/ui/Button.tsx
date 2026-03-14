@@ -9,6 +9,8 @@ interface ButtonProps {
   type?: 'button' | 'submit';
   className?: string;
   children: ReactNode;
+  target?: string;
+  rel?: string;
 }
 
 /**
@@ -22,6 +24,8 @@ export function Button({
   type = 'button',
   className,
   children,
+  target,
+  rel,
 }: ButtonProps) {
   const baseClass = 'btn';
   const variantClass = variant === 'primary' ? 'btn--primary' : 'btn--secondary';
@@ -29,7 +33,7 @@ export function Button({
 
   if (href !== undefined) {
     return (
-      <a href={href} className={fullClass}>
+      <a href={href} className={fullClass} target={target} rel={rel}>
         <span className="btn__label">{children}</span>
       </a>
     );

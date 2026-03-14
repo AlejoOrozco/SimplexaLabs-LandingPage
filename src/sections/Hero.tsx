@@ -1,14 +1,14 @@
 import { Button, BackgroundPaths, CtaBorderWrap } from '../components';
 
-export function Hero() {
-  const benefits = [
-    'responde clientes al instante',
-    'filtra leads automáticamente',
-    'agenda citas y hace seguimiento',
-    'vende mientras tu equipo está ocupado',
-    'recupera tiempo y escala con más orden',
-  ];
+const BENEFITS = [
+  'Responde clientes al instante en WhatsApp, Instagram y tu sitio web',
+  'Captura leads, agenda citas y hace seguimiento automático',
+  'Filtra leads automáticamente — solo hablas con quien está listo para comprar',
+  'Genera tu contenido de redes cada mes sin que hagas nada',
+  'Escala con más orden y menos esfuerzo manual',
+];
 
+export function Hero() {
   return (
     <>
       <BackgroundPaths />
@@ -17,19 +17,19 @@ export function Hero() {
           Empleados Digitales con IA que responden, venden y hacen seguimiento 24/7
         </h1>
         <p className="hero__subheadline">
-          Automatiza atención al cliente, captura de leads, seguimiento y ventas por WhatsApp, Instagram y tu sitio web sin contratar más personal.
+          Sin contratar más personal. Sin perder otro mensaje. Sin trabajar de más.
         </p>
         <div className="hero__benefits" aria-label="Beneficios clave">
           <div className="hero__benefits-fade">
             <div className="hero__benefits-track" role="text">
-              {benefits.map((t, i) => (
+              {BENEFITS.map((t, i) => (
                 <span key={`a-${i}`} className="hero__benefit">
                   <span className="hero__benefit-check" aria-hidden="true">✓</span>
                   {t}
                 </span>
               ))}
               <span className="hero__benefits-gap" aria-hidden="true" />
-              {benefits.map((t, i) => (
+              {BENEFITS.map((t, i) => (
                 <span key={`b-${i}`} className="hero__benefit" aria-hidden="true">
                   <span className="hero__benefit-check">✓</span>
                   {t}
@@ -45,10 +45,10 @@ export function Hero() {
               variant="primary"
               className="btn--hero-primary btn--marquee-overflow"
             >
-              <span className="btn__marquee" aria-label="Empieza tu prueba gratis">
+              <span className="btn__marquee" aria-label="Empieza tu prueba gratis — 7 días · Sin tarjeta de crédito">
                 <span className="btn__marquee-track">
-                  <span className="btn__marquee-item">Empieza tu prueba gratis</span>
-                  <span className="btn__marquee-item" aria-hidden="true">Empieza tu prueba gratis</span>
+                  <span className="btn__marquee-item">Empieza tu prueba gratis — 7 días · Sin tarjeta de crédito</span>
+                  <span className="btn__marquee-item" aria-hidden="true">Empieza tu prueba gratis — 7 días · Sin tarjeta de crédito</span>
                 </span>
               </span>
             </Button>
@@ -56,7 +56,7 @@ export function Hero() {
           <Button href="#pricing" variant="secondary">Ver planes</Button>
         </div>
         <p className="hero__microcopy">
-          7 días gratis en Starter, Medium y Premium
+          7 días gratis · Sin tarjeta de crédito
         </p>
       </div>
     </>

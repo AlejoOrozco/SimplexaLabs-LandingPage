@@ -17,22 +17,22 @@ const FEATURES = [
   },
   {
     title: 'Diseño de páginas del negocio',
-    description: 'Home, servicios, contacto y páginas clave adaptadas a tu tipo de negocio y estilo de marca.',
+    description: 'Home, servicios, contacto y páginas clave adaptadas al tipo de negocio, marca y estilo.',
     icon: LayoutDashboard,
   },
   {
     title: 'Integración del empleado digital',
-    description: 'Conectamos tu empleado digital directamente en el sitio para responder y guiar a tus visitantes.',
+    description: 'Conectamos tu AI directamente en el sitio para responder y guiar a tus visitantes en tiempo real.',
     icon: Bot,
   },
   {
-    title: 'Conexión con automatizaciones',
+    title: 'Conexión con tus automatizaciones',
     description: 'Enlazamos formularios, chats y eventos del sitio con tus automatizaciones de seguimiento y ventas.',
     icon: Workflow,
   },
   {
-    title: 'Captura de leads',
-    description: 'Opt-ins optimizados para que cada visita tenga una forma clara de dejar sus datos.',
+    title: 'Captura de leads optimizada',
+    description: 'Opt-ins y formularios optimizados para que cada visita tenga una forma clara de dejar sus datos.',
     icon: Magnet,
   },
   {
@@ -67,7 +67,7 @@ export function AddOnSitioWeb() {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.55, ease: 'easeOut', delay: 0.08 }}
           >
-            También puedes agregar a cualquier plan la creación de tu sitio web con IA para que no solo automatices
+            También puedes agregar a cualquier plan la creación de tu sitio web con IA — para que no solo automatices
             conversaciones, sino también tu presencia digital.
           </motion.p>
 
@@ -146,12 +146,12 @@ export function AddOnSitioWeb() {
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.5, ease: 'easeOut', delay: 0.15 }}
         >
-          <Button href="#cta-final" variant="primary" className="btn--pulse">
-            Agregar a mi plan
-          </Button>
-          <p className="addon-section__cta-note">
-            Sitio optimizado para capturar leads y conectar con tus automatizaciones.
+          <p className="addon-section__cta-note addon-section__cta-note--above">
+            ¿Ya tienes website? No hay problema — nuestros planes de automatización funcionan con cualquier sitio existente.
           </p>
+          <Button href="#pricing" variant="primary" className="btn--pulse">
+            Quiero website + automatización →
+          </Button>
         </motion.div>
       </div>
     </section>

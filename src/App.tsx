@@ -11,6 +11,9 @@ const Solucion = lazy(() => import('./sections/Solucion').then((m) => ({ default
 const QueHaceEmpleado = lazy(() => import('./sections/QueHaceEmpleado').then((m) => ({ default: m.QueHaceEmpleado })));
 const BeneficiosROI = lazy(() => import('./sections/BeneficiosROI').then((m) => ({ default: m.BeneficiosROI })));
 const ComoFunciona = lazy(() => import('./sections/ComoFunciona').then((m) => ({ default: m.ComoFunciona })));
+const CrmAutomatizacion = lazy(() => import('./sections/CrmAutomatizacion').then((m) => ({ default: m.CrmAutomatizacion })));
+const MarketingContent = lazy(() => import('./sections/MarketingContent').then((m) => ({ default: m.MarketingContent })));
+const ProgramaFundador = lazy(() => import('./sections/ProgramaFundador').then((m) => ({ default: m.ProgramaFundador })));
 const Pricing = lazy(() => import('./sections/Pricing').then((m) => ({ default: m.Pricing })));
 const AddOnSitioWeb = lazy(() => import('./sections/AddOnSitioWeb').then((m) => ({ default: m.AddOnSitioWeb })));
 const CasosDeUso = lazy(() => import('./sections/CasosDeUso').then((m) => ({ default: m.CasosDeUso })));
@@ -60,6 +63,24 @@ function App() {
         <LazySection id="como-funciona" ariaLabel="Cómo funciona" placeholderMinHeight={320} className="section section--alt">
           <Suspense fallback={<SectionFallback />}>
             <ComoFunciona />
+          </Suspense>
+        </LazySection>
+
+        <LazySection id="crm" ariaLabel="CRM y automatización" placeholderMinHeight={380} className="section section--crm">
+          <Suspense fallback={<SectionFallback />}>
+            <CrmAutomatizacion />
+          </Suspense>
+        </LazySection>
+
+        <LazySection id="marketing-content" ariaLabel="Contenido de marketing con IA" placeholderMinHeight={380} className="section section--alt section--marketing-content">
+          <Suspense fallback={<SectionFallback />}>
+            <MarketingContent />
+          </Suspense>
+        </LazySection>
+
+        <LazySection id="programa-fundador" ariaLabel="Programa Fundador" placeholderMinHeight={420} className="section section--programa-fundador">
+          <Suspense fallback={<SectionFallback />}>
+            <ProgramaFundador />
           </Suspense>
         </LazySection>
 
