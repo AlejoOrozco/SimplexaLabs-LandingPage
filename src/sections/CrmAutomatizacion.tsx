@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Button } from '../components';
+import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
 import {
   LayoutGrid,
   Inbox,
@@ -43,6 +44,7 @@ const FEATURES = [
 ];
 
 export function CrmAutomatizacion() {
+  const { openScheduleModal } = useScheduleMeeting();
   return (
     <div className="section__inner crm-section__inner">
       <motion.p
@@ -116,7 +118,7 @@ export function CrmAutomatizacion() {
         viewport={{ once: true }}
         transition={{ duration: 0.45, delay: 0.2 }}
       >
-        <Button href="#pricing" variant="primary">
+        <Button variant="primary" onClick={() => openScheduleModal('CRM')}>
           Ver cómo funciona el CRM →
         </Button>
       </motion.div>

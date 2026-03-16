@@ -2915,3 +2915,140 @@ a:hover {
   color: #1e3a5f;
   font-weight: 600;
 }
+
+/* ─── Schedule Meeting Modal ────────────────────────────────────────────────── */
+.schedule-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.schedule-modal__box {
+  width: 100%;
+  max-width: 440px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.schedule-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(30, 58, 95, 0.1);
+}
+
+.schedule-modal__title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.schedule-modal__close {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-text-secondary);
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.schedule-modal__close:hover {
+  background: rgba(30, 58, 95, 0.08);
+  color: var(--color-text-primary);
+}
+
+.schedule-modal__form,
+.schedule-modal__success,
+.schedule-modal__message {
+  padding: 1.5rem;
+}
+
+.schedule-modal__plan-badge {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-morado-ai);
+}
+
+.schedule-modal__field {
+  margin-bottom: 1rem;
+}
+
+.schedule-modal__field label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.schedule-modal__field input,
+.schedule-modal__field textarea {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid rgba(30, 58, 95, 0.2);
+  border-radius: 8px;
+  color: var(--color-text-primary);
+  background: #fff;
+}
+
+.schedule-modal__field input:focus,
+.schedule-modal__field textarea:focus {
+  outline: none;
+  border-color: var(--color-azul-electrico);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.schedule-modal__field textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.schedule-modal__error {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--color-accent-error);
+}
+
+.schedule-modal__actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.schedule-modal__btn-loading {
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.schedule-modal__success p,
+.schedule-modal__message p {
+  margin: 0 0 1rem;
+  color: var(--color-text-secondary);
+}
+
+.schedule-modal__message--warning p {
+  color: #92400e;
+}

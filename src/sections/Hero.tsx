@@ -1,4 +1,5 @@
 import { Button, BackgroundPaths, CtaBorderWrap } from '../components';
+import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
 
 const BENEFITS = [
   'Responde clientes al instante en WhatsApp, Instagram y tu sitio web',
@@ -9,6 +10,7 @@ const BENEFITS = [
 ];
 
 export function Hero() {
+  const { openScheduleModal } = useScheduleMeeting();
   return (
     <>
       <BackgroundPaths />
@@ -41,9 +43,9 @@ export function Hero() {
         <div className="hero__ctas">
           <CtaBorderWrap>
             <Button
-              href="#pricing"
               variant="primary"
               className="btn--hero-primary btn--marquee-overflow"
+              onClick={() => openScheduleModal('Prueba gratis')}
             >
               <span className="btn__marquee" aria-label="Empieza tu prueba gratis — 7 días · Sin tarjeta de crédito">
                 <span className="btn__marquee-track">
@@ -53,7 +55,9 @@ export function Hero() {
               </span>
             </Button>
           </CtaBorderWrap>
-          <Button href="#pricing" variant="secondary">Ver planes</Button>
+          <Button variant="secondary" onClick={() => openScheduleModal()}>
+            Ver planes
+          </Button>
         </div>
         <p className="hero__microcopy">
           7 días gratis · Sin tarjeta de crédito

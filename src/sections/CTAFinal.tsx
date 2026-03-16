@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Button, CtaBorderWrap } from '../components';
+import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
 import { WHATSAPP_URL } from '../constants';
 
 const STATS = [
@@ -10,6 +11,7 @@ const STATS = [
 ];
 
 export function CTAFinal() {
+  const { openScheduleModal } = useScheduleMeeting();
   return (
     <div className="section__inner cta-final__inner">
       {/* Glow orbs */}
@@ -67,7 +69,11 @@ export function CTAFinal() {
         transition={{ duration: 0.45, ease: 'easeOut', delay: 0.18 }}
       >
         <CtaBorderWrap>
-          <Button href="#pricing" variant="primary" className="btn--hero-primary btn--marquee-overflow">
+          <Button
+            variant="primary"
+            className="btn--hero-primary btn--marquee-overflow"
+            onClick={() => openScheduleModal('Prueba gratis')}
+          >
             <span className="btn__marquee" aria-label="Comienza tu prueba gratis">
               <span className="btn__marquee-track">
                 <span className="btn__marquee-item">Comienza tu prueba gratis →</span>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { PLAN_COLORS, PLANS_SIN_WEB, PLANS_CON_WEB } from '@/constants/pricing';
 import { WHATSAPP_URL } from '@/constants/contact';
+import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
 import { PricingCard } from '../components';
 import { cn } from '@/lib/utils';
 
@@ -9,6 +10,7 @@ type TabKey = 'sin-web' | 'con-web';
 export function Pricing() {
   const [tab, setTab] = useState<TabKey>('sin-web');
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const { openScheduleModal } = useScheduleMeeting();
 
   const plans = tab === 'con-web' ? PLANS_CON_WEB : PLANS_SIN_WEB;
 
@@ -59,6 +61,7 @@ export function Pricing() {
             result={plan.result}
             cta={plan.cta}
             ctaHref={plan.ctaHref}
+            onCtaClick={(planName) => openScheduleModal(`${planName} ${tab === 'con-web' ? '(Con web)' : '(Sin web)'}`)}
             popular={plan.popular}
             color={PLAN_COLORS[plan.id.replace(/-web$/, '')] ?? PLAN_COLORS[plan.id] ?? '#2563eb'}
             dimmed={hoveredId !== null && hoveredId !== plan.id}

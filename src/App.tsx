@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
-import { Header, Footer, SocialProofToast } from './components';
+import { ScheduleMeetingProvider } from './contexts/ScheduleMeetingContext';
+import { Header, Footer, SocialProofToast, ScheduleMeetingModal } from './components';
 import { LazySection } from './sections/LazySection';
 
 const ChatWidget = lazy(() =>
@@ -27,7 +28,7 @@ function SectionFallback() {
 
 function App() {
   return (
-    <>
+    <ScheduleMeetingProvider>
       <Header />
       <main>
         <LazySection id="hero" ariaLabel="Inicio" placeholderMinHeight={420} className="section hero">
@@ -125,7 +126,8 @@ function App() {
       <Suspense fallback={null}>
         <ChatWidget />
       </Suspense>
-    </>
+      <ScheduleMeetingModal />
+    </ScheduleMeetingProvider>
   );
 }
 

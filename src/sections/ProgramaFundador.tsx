@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { WHATSAPP_URL } from '@/constants/contact';
+import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
 import { Button } from '../components';
 import { Lock, DollarSign, Zap, Handshake } from 'lucide-react';
 
@@ -31,6 +32,7 @@ const BENEFITS = [
 ];
 
 export function ProgramaFundador() {
+  const { openScheduleModal } = useScheduleMeeting();
   return (
     <div className="section__inner programa-fundador__inner">
       <motion.span
@@ -163,7 +165,7 @@ export function ProgramaFundador() {
         viewport={{ once: true }}
         transition={{ duration: 0.45 }}
       >
-        <Button href={WHATSAPP_URL} variant="primary" className="btn--hero-primary" target="_blank" rel="noopener noreferrer">
+        <Button variant="primary" className="btn--hero-primary" onClick={() => openScheduleModal('Programa Fundador')}>
           Quiero ser Cliente Fundador →
         </Button>
         <p className="programa-fundador__cta-note">

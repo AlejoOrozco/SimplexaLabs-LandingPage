@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Button } from '../components';
+import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
 import { Instagram, Megaphone, Video, Mail } from 'lucide-react';
 
 const ITEMS = [
@@ -26,6 +27,7 @@ const ITEMS = [
 ];
 
 export function MarketingContent() {
+  const { openScheduleModal } = useScheduleMeeting();
   return (
     <div className="section__inner marketing-content__inner">
       <motion.h2
@@ -106,7 +108,7 @@ export function MarketingContent() {
         viewport={{ once: true }}
         transition={{ duration: 0.45, delay: 0.25 }}
       >
-        <Button href="#pricing" variant="primary">
+        <Button variant="primary" onClick={() => openScheduleModal('Marketing Content')}>
           Ver qué incluye cada plan →
         </Button>
       </motion.div>

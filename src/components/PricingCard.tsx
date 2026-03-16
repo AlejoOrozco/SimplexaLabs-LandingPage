@@ -19,6 +19,7 @@ export function PricingCard({
   result,
   cta,
   ctaHref,
+  onCtaClick,
   popular = false,
   color = '#2563eb',
   dimmed = false,
@@ -111,13 +112,24 @@ export function PricingCard({
         ))}
       </ul>
       <p className="pricing-card__result">{result}</p>
-      <Button
-        href={ctaHref}
-        variant="primary"
-        className="pricing-card__cta"
-      >
-        {cta}
-      </Button>
+      {onCtaClick ? (
+        <Button
+          type="button"
+          variant="primary"
+          className="pricing-card__cta"
+          onClick={() => onCtaClick(name)}
+        >
+          {cta}
+        </Button>
+      ) : (
+        <Button
+          href={ctaHref}
+          variant="primary"
+          className="pricing-card__cta"
+        >
+          {cta}
+        </Button>
+      )}
       {/* Accent bottom line on hover */}
       <div
         aria-hidden="true"

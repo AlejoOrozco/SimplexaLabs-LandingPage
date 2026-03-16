@@ -2,6 +2,7 @@ export { ErrorBoundary } from './ErrorBoundary';
 export { Header, Footer } from './layout';
 export { Button, Card, CtaBorderWrap, ShimmerText } from './ui';
 export { PricingCard } from './PricingCard';
+export { ScheduleMeetingModal } from './ScheduleMeetingModal';
 export { BackgroundPaths } from './BackgroundPaths';
 export { FadeInWords } from './FadeInWords';
 export { BlurBlobs } from './BlurBlobs';

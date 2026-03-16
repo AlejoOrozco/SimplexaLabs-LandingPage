@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Button, Card } from '../components';
+import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
 import {
   Sparkles,
   LayoutDashboard,
@@ -43,6 +44,7 @@ const FEATURES = [
 ];
 
 export function AddOnSitioWeb() {
+  const { openScheduleModal } = useScheduleMeeting();
   return (
     <section className="section__inner addon-section__inner">
       {/* Static gradient — no JS animation loop */}
@@ -149,7 +151,7 @@ export function AddOnSitioWeb() {
           <p className="addon-section__cta-note addon-section__cta-note--above">
             ¿Ya tienes website? No hay problema — nuestros planes de automatización funcionan con cualquier sitio existente.
           </p>
-          <Button href="#pricing" variant="primary" className="btn--pulse">
+          <Button variant="primary" className="btn--pulse" onClick={() => openScheduleModal('Website + automatización')}>
             Quiero website + automatización →
           </Button>
         </motion.div>

@@ -11,6 +11,8 @@ interface ButtonProps {
   children: ReactNode;
   target?: string;
   rel?: string;
+  onClick?: () => void;
+  disabled?: boolean;
 }
 
 /**
@@ -26,6 +28,8 @@ export function Button({
   children,
   target,
   rel,
+  onClick,
+  disabled,
 }: ButtonProps) {
   const baseClass = 'btn';
   const variantClass = variant === 'primary' ? 'btn--primary' : 'btn--secondary';
@@ -40,7 +44,7 @@ export function Button({
   }
 
   return (
-    <button type={type} className={fullClass}>
+    <button type={type} className={fullClass} onClick={onClick} disabled={disabled}>
       <span className="btn__label">{children}</span>
     </button>
   );
