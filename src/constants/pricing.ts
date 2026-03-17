@@ -86,7 +86,7 @@ export const PLANS_SIN_WEB: PlanEntry[] = [
       'Soporte WhatsApp prioritario mismo día',
     ],
     result: 'Escala ventas y atención sin contratar más personal.',
-    cta: 'Empieza ahora',
+    cta: 'Empieza tu prueba gratis',
     ctaHref: '#cta-final',
   },
   {
@@ -164,7 +164,7 @@ export const PLANS_CON_WEB: PlanEntry[] = [
       'Setup fee único: $1,297 USD',
     ],
     result: 'Dominio total de tu canal digital.',
-    cta: 'Empieza ahora',
+    cta: 'Empieza tu prueba gratis',
     ctaHref: '#cta-final',
   },
   {

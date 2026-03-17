@@ -1,6 +1,9 @@
 import { Button, CtaBorderWrap } from '../ui';
+import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
 
 export function Header() {
+  const { openScheduleModal } = useScheduleMeeting();
+
   return (
     <header className="header">
       <div className="header__inner">
@@ -14,9 +17,9 @@ export function Header() {
           <a href="#faq">FAQ</a>
           <CtaBorderWrap>
             <Button
-              href="#cta-final"
               variant="primary"
               className="btn--hero-primary btn--marquee-overflow header__cta"
+              onClick={() => openScheduleModal('Prueba gratis')}
             >
               <span className="btn__marquee" aria-label="Prueba gratis">
                 <span className="btn__marquee-track">
