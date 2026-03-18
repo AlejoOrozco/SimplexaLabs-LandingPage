@@ -1881,6 +1881,20 @@ a:hover {
   text-decoration: underline;
 }
 
+.pricing-cta-note .pricing-cta-link {
+  font-weight: 600;
+  text-decoration: none;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.pricing-cta-note .pricing-cta-link:hover {
+  text-decoration: underline;
+}
+
 .pricing-grid {
   display: grid;
   gap: 1.5rem;

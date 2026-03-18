@@ -1,5 +1,7 @@
 import { createServer } from 'node:http';
 import Groq from 'groq-sdk';
+import { initializeApp, getApps } from 'firebase/app';
+import { getFirestore, collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 if (!process.env.GROQ_API_KEY) {
   console.error('Missing GROQ_API_KEY in environment (.env).');
@@ -65,6 +67,23 @@ function json(res, status, data) {
   res.end(JSON.stringify(data));
 }
 
+// ---- Firebase client (used only to write meetings) ----
+function getFirestoreDb() {
+  const firebaseConfig = {
+    apiKey: process.env.VITE_FIREBASE_API_KEY,
+    authDomain: process.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.VITE_FIREBASE_STORAGE_BUCKET,
+  };
+
+  if (!firebaseConfig.apiKey || !firebaseConfig.authDomain || !firebaseConfig.projectId) {
+    throw new Error('Missing VITE_FIREBASE_* env vars for meetings API.');
+  }
+
+  if (!getApps().length) initializeApp(firebaseConfig);
+  return getFirestore();
+}
+
 const server = createServer(async (req, res) => {
   // CORS preflight
   if (req.method === 'OPTIONS') {
@@ -120,6 +139,52 @@ const server = createServer(async (req, res) => {
       json(res, 500, { error: 'Error al conectar con el asesor. Intenta de nuevo.' });
     }
     return;
+  }
+
+  // ---- Meetings endpoint (writes to Firestore) ----
+  if (req.method === 'POST' && req.url === '/api/meetings') {
+    try {
+      const body = await readJson(req);
+      const guestEmail = String(body?.guestEmail || '').trim().toLowerCase();
+      if (!guestEmail) return json(res, 400, { error: 'guestEmail es obligatorio.' });
+
+      const guestName = String(body?.guestName || '').trim();
+      const guestPhone = String(body?.guestPhone || '').trim();
+      const notes = String(body?.notes || '').trim();
+      const duration = Number(body?.duration) || 30;
+      const plan = body?.plan ? String(body.plan) : null;
+
+      const scheduledAt =
+        body?.scheduledAt ? new Date(String(body.scheduledAt)) : new Date(Date.now() + 24 * 60 * 60 * 1000);
+
+      const defaultAssigned = [
+        process.env.VITE_BRANDON_FIREBASE_ID,
+        process.env.VITE_ALEJANDRO_FIREBASE_ID,
+      ].filter((x) => typeof x === 'string' && x);
+
+      const assignedToUserIds = Array.isArray(body?.assignedToUserIds) && body.assignedToUserIds.length > 0
+        ? body.assignedToUserIds.map((x) => String(x)).filter(Boolean)
+        : defaultAssigned;
+
+      const db = getFirestoreDb();
+      const ref = await addDoc(collection(db, 'meetings'), {
+        assignedToUserIds,
+        createdAt: serverTimestamp(),
+        duration,
+        guestEmail,
+        guestName,
+        guestPhone,
+        notes,
+        scheduledAt,
+        status: 'pending',
+        updatedAt: serverTimestamp(),
+      });
+
+      return json(res, 201, { id: ref.id });
+    } catch (err) {
+      console.error('[meetings-api] Error:', err);
+      return json(res, 500, { error: 'No se pudo agendar. Intenta de nuevo.' });
+    }
   }
 
   json(res, 404, { error: 'Not found' });

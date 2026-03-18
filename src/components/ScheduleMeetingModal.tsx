@@ -113,7 +113,10 @@ export function ScheduleMeetingModal() {
           </div>
         ) : status === 'already_from_device' ? (
           <div className="schedule-modal__message schedule-modal__message--warning">
-            <p>Ya has agendado una reunión desde este dispositivo. Si necesitas cambios, escríbenos por WhatsApp.</p>
+            <p>
+              Ya alcanzaste el máximo de solicitudes de agendamiento desde este dispositivo.
+              Si necesitas cambios, escríbenos por WhatsApp.
+            </p>
             <Button type="button" variant="primary" onClick={handleClose}>
               Cerrar
             </Button>

@@ -187,3 +187,240 @@ export const PLANS_CON_WEB: PlanEntry[] = [
 
 /** Legacy export for compatibility; use PLANS_SIN_WEB or PLANS_CON_WEB. */
 export const PLANS = PLANS_SIN_WEB;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PDF-guided pricing model (single pricing source)
+// Website + Marketing toggles (both are mutually exclusive inside their group)
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type WebsiteMode = 'sin-web' | 'con-web';
+export type MarketingMode = 'sin-marketing' | 'con-marketing';
+
+// Accent colors aligned to the current site palette
+export const PLAN_COLORS_PDF: Record<string, string> = {
+  esencial: '#2563eb',
+  negocio: '#7c3aed',
+  pro: '#1e3a5f',
+  enterprise: '#3b82f6',
+};
+
+const BASE_PLANS_PDF = [
+  {
+    id: 'esencial',
+    name: 'Esencial',
+    baseUsd: 127,
+    tagline: 'Negocio pequeño que ya tiene clientes, pero pierde consultas por WhatsApp sin responder.',
+    result: 'El AI captura y convierte consultas existentes — sin prometer tráfico nuevo sin marketing.',
+    cta: 'Empieza tu prueba gratis',
+    popular: false,
+    colorId: 'esencial',
+  },
+  {
+    id: 'negocio',
+    name: 'Negocio',
+    baseUsd: 197,
+    tagline: 'Volumen medio de consultas con presencia activa en IG y WhatsApp.',
+    result: 'Más seguimiento y mejor atención para que tus leads no se enfríen.',
+    cta: 'Comienza tu prueba gratis',
+    popular: true,
+    colorId: 'negocio',
+  },
+  {
+    id: 'pro',
+    name: 'Pro',
+    baseUsd: 297,
+    tagline: 'Alto volumen (100+/mes): reactivación de leads y automatización sin límites.',
+    result: 'Workflows ilimitados + analytics para escalar ventas y atención 24/7.',
+    cta: 'Empieza tu prueba gratis',
+    popular: false,
+    colorId: 'pro',
+  },
+  {
+    id: 'enterprise',
+    name: 'Empresa',
+    baseUsd: 497,
+    tagline: 'Multi-ubicación con Voz AI e integraciones avanzadas, todo personalizado.',
+    result: 'Gestión completa y solución a medida para tu operación.',
+    cta: 'Cotizar',
+    popular: false,
+    colorId: 'enterprise',
+  },
+] as const;
+
+const USD_TO_COP = 4300; // approx COP per 1 USD
+
+function formatCopMonthly(usd: number) {
+  const cop = usd * USD_TO_COP;
+
+  // Keep "K" for < 1M (e.g. 847K), and switch to "M" for >= 1M (e.g. 2.14M)
+  if (cop >= 1_000_000) {
+    const m = cop / 1_000_000;
+    return `≈ $${m.toFixed(2).replace(/\.00$/, '')}M COP/mes`;
+  }
+
+  const k = Math.round(cop / 1000);
+  return `≈ $${k}K COP/mes`;
+}
+
+function priceNote(usd: number) {
+  return formatCopMonthly(usd);
+}
+
+const WEBSITE_BY_PLAN = {
+  esencial: { tier: 'starter', monthlyUsd: 50, setupUsd: 297 },
+  negocio: { tier: 'starter', monthlyUsd: 50, setupUsd: 297 },
+  pro: { tier: 'pro', monthlyUsd: 80, setupUsd: 497 },
+  enterprise: { tier: 'custom', monthlyUsd: 120, setupUsd: 797 },
+} as const;
+
+const MARKETING_BY_PLAN = {
+  esencial: { tier: 'basico', monthlyUsd: 79 },
+  negocio: { tier: 'pro', monthlyUsd: 127 },
+  pro: { tier: 'total', monthlyUsd: 197 },
+  enterprise: { tier: 'total', monthlyUsd: 197 },
+} as const;
+
+function baseFeatures(planId: string, marketingMode: MarketingMode): string[] {
+  const commonNoMarketingAviso =
+    marketingMode === 'sin-marketing'
+      ? [
+        'Sin marketing: resultados dependen de tu flujo/tu tráfico existente. El AI convierte consultas, no genera tráfico nuevo.',
+      ]
+      : [];
+
+  switch (planId) {
+    case 'esencial':
+      return [
+        '1 AI Agent en WhatsApp · CRM básico',
+        'Pipeline de leads · Inbox unificado',
+        'Booking de citas',
+        'Captura y convierte consultas existentes',
+        ...commonNoMarketingAviso,
+      ];
+    case 'negocio':
+      return [
+        '2 AI Agents (WhatsApp + Instagram) · CRM completo',
+        'Workflows automáticos · Booking',
+        'Seguimiento de leads',
+        'Reportes mensuales',
+        ...commonNoMarketingAviso,
+      ];
+    case 'pro':
+      return [
+        '3 AI Agents (WhatsApp + Web + Instagram) · CRM premium',
+        'Workflows ilimitados · Reactivación de leads fríos',
+        'Dashboard analytics · Soporte prioritario',
+        'Operación AI 24/7 completa',
+        ...commonNoMarketingAviso,
+      ];
+    case 'enterprise':
+      return [
+        'Multi-ubicación · Voz AI',
+        'Integraciones avanzadas · Todo personalizado',
+        'Reunión mensual estratégica incluida',
+      ];
+    default:
+      return [...commonNoMarketingAviso];
+  }
+}
+
+function websiteFeatures(planId: string): string[] {
+  switch (planId) {
+    case 'esencial':
+    case 'negocio':
+      return [
+        '🌐 Web Starter: 4 páginas · Mobile-first',
+        'Hosting incluido · Dominio básico',
+        'Integrado con AI + CRM desde el día 1',
+        'Entrega en 14 días hábiles',
+      ];
+    case 'pro':
+      return [
+        '🌐 Web Pro: 6–8 páginas · Blog · Galería',
+        'SEO básico + formularios avanzados',
+        'Integrado completo con AI + CRM',
+        'Entrega en 21 días hábiles',
+      ];
+    case 'enterprise':
+      return [
+        '🌐 Web Custom: 10–12 páginas · E-commerce · Booking avanzado',
+        'Integraciones custom · Todo a medida',
+        'Entrega en 30 días hábiles + kick-off',
+      ];
+    default:
+      return [];
+  }
+}
+
+function marketingFeatures(planId: string): string[] {
+  switch (planId) {
+    case 'esencial':
+      return [
+        '📱 Marketing Básico (Holo.ai): 8 posts/mes listos para publicar',
+        'Personalizado con marca del cliente · Temáticas del sector',
+        'Generación automática con Holo.ai',
+      ];
+    case 'negocio':
+      return [
+        '📱 Marketing Pro (Holo.ai): 15 posts + 2 reels + 2 ads listos',
+        'Calendario mensual · Temáticas variadas',
+        'Generación de todos los assets con Holo.ai',
+      ];
+    case 'pro':
+    case 'enterprise':
+      return [
+        '📱 Marketing Total (Holo.ai): 20–30 assets/mes',
+        'Posts + reels + ads + emails + stories',
+        'Toda la paleta de formatos · Máxima presencia',
+        'Se entrega el primer día de cada mes',
+      ];
+    default:
+      return [];
+  }
+}
+
+function resolveSetupFee(planId: string) {
+  if (planId === 'esencial' || planId === 'negocio') return 'Setup fee único: $297 USD';
+  if (planId === 'pro') return 'Setup fee único: $497 USD';
+  return 'Setup fee único: $797 USD';
+}
+
+export function getPricingPlansPdf2026(
+  websiteMode: WebsiteMode,
+  marketingMode: MarketingMode
+): PlanEntry[] {
+  const marketingEnabled = marketingMode === 'con-marketing';
+  const websiteEnabled = websiteMode === 'con-web';
+
+  return BASE_PLANS_PDF.map((p) => {
+    const web = websiteEnabled
+      ? WEBSITE_BY_PLAN[p.id as keyof typeof WEBSITE_BY_PLAN]
+      : null;
+    const mkt = marketingEnabled ? MARKETING_BY_PLAN[p.id as keyof typeof MARKETING_BY_PLAN] : null;
+
+    const monthlyUsd = p.baseUsd + (web?.monthlyUsd ?? 0) + (mkt?.monthlyUsd ?? 0);
+    const period = '/mes';
+    const price = `$${monthlyUsd}`;
+
+    const features = [
+      ...baseFeatures(p.id, marketingMode),
+      ...(websiteEnabled ? websiteFeatures(p.id) : []),
+      ...(marketingEnabled ? marketingFeatures(p.id) : []),
+    ];
+
+    return {
+      id: p.id,
+      name: p.name,
+      price,
+      period,
+      priceNote: priceNote(monthlyUsd),
+      setupFee: websiteEnabled ? resolveSetupFee(p.id) : undefined,
+      tagline: p.tagline,
+      features,
+      result: p.result,
+      cta: p.cta,
+      ctaHref: '#cta-final',
+      popular: p.popular,
+    };
+  });
+}

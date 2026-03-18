@@ -12,6 +12,7 @@ import { db } from './firebase';
 const MEETINGS_COLLECTION = 'meetings';
 const STORAGE_KEY_SUBMITTED = 'simplexalabs_meeting_submitted';
 const MEETINGS_API_URL = import.meta.env.VITE_MEETINGS_API_URL;
+const MAX_MEETING_UPLOADS_PER_DEVICE = 3;
 
 /** User IDs to assign new meetings to (from env; not hardcoded). */
 function getDefaultAssignedUserIds(): string[] {
@@ -44,7 +45,6 @@ export interface MeetingRecord extends MeetingPayload {
   updatedAt: Timestamp;
 }
 
-/** Check if a meeting already exists for this email (any status). */
 export async function hasMeetingForEmail(guestEmail: string): Promise<boolean> {
   const normalized = guestEmail.trim().toLowerCase();
   const q = query(
@@ -55,19 +55,27 @@ export async function hasMeetingForEmail(guestEmail: string): Promise<boolean> {
   return !snap.empty;
 }
 
-/** Check if this device already submitted a meeting (localStorage). */
-export function hasSubmittedFromThisDevice(): boolean {
+function getLocalSubmissionCount(): number {
   try {
-    return localStorage.getItem(STORAGE_KEY_SUBMITTED) === '1';
+    const raw = localStorage.getItem(STORAGE_KEY_SUBMITTED);
+    if (!raw) return 0;
+    const n = Number.parseInt(raw, 10);
+    if (Number.isNaN(n)) return 0;
+    return Math.max(0, n);
   } catch {
-    return false;
+    return 0;
   }
 }
 
-/** Mark that this device submitted a meeting (call after successful create). */
+export function hasSubmittedFromThisDevice(): boolean {
+  return getLocalSubmissionCount() >= MAX_MEETING_UPLOADS_PER_DEVICE;
+}
+
 export function markSubmittedFromThisDevice(): void {
   try {
-    localStorage.setItem(STORAGE_KEY_SUBMITTED, '1');
+    const current = getLocalSubmissionCount();
+    const next = Math.min(MAX_MEETING_UPLOADS_PER_DEVICE, current + 1);
+    localStorage.setItem(STORAGE_KEY_SUBMITTED, String(next));
   } catch {
     // ignore
   }

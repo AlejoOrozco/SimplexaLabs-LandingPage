@@ -1,18 +1,23 @@
 import { useState } from 'react';
-import { PLAN_COLORS, PLANS_SIN_WEB, PLANS_CON_WEB } from '@/constants/pricing';
-import { WHATSAPP_URL } from '@/constants/contact';
+import {
+  PLAN_COLORS_PDF,
+  getPricingPlansPdf2026,
+  type MarketingMode,
+  type WebsiteMode,
+} from '@/constants/pricing';
 import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
 import { PricingCard } from '../components';
 import { cn } from '@/lib/utils';
 
-type TabKey = 'sin-web' | 'con-web';
-
 export function Pricing() {
-  const [tab, setTab] = useState<TabKey>('sin-web');
+  const [websiteTab, setWebsiteTab] = useState<WebsiteMode>('sin-web');
+  const [marketingTab, setMarketingTab] = useState<MarketingMode>('sin-marketing');
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const { openScheduleModal } = useScheduleMeeting();
 
-  const plans = tab === 'con-web' ? PLANS_CON_WEB : PLANS_SIN_WEB;
+  const plans = getPricingPlansPdf2026(websiteTab, marketingTab);
+  const websiteLabel = websiteTab === 'con-web' ? '(Con web)' : '(Sin web)';
+  const marketingLabel = marketingTab === 'con-marketing' ? '(Con marketing)' : '(Sin marketing)';
 
   return (
     <div className="section__inner pricing-section__inner">
@@ -26,28 +31,58 @@ export function Pricing() {
         <button
           type="button"
           role="tab"
-          aria-selected={tab === 'sin-web'}
+          aria-selected={websiteTab === 'sin-web'}
           aria-controls="pricing-grid"
           id="tab-sin-web"
-          className={cn('pricing-tab', tab === 'sin-web' && 'pricing-tab--active')}
-          onClick={() => setTab('sin-web')}
+          className={cn('pricing-tab', websiteTab === 'sin-web' && 'pricing-tab--active')}
+          onClick={() => setWebsiteTab('sin-web')}
         >
           Sin website
         </button>
         <button
           type="button"
           role="tab"
-          aria-selected={tab === 'con-web'}
+          aria-selected={websiteTab === 'con-web'}
           aria-controls="pricing-grid"
           id="tab-con-web"
-          className={cn('pricing-tab', tab === 'con-web' && 'pricing-tab--active')}
-          onClick={() => setTab('con-web')}
+          className={cn('pricing-tab', websiteTab === 'con-web' && 'pricing-tab--active')}
+          onClick={() => setWebsiteTab('con-web')}
         >
           Con website
         </button>
       </div>
 
-      <div id="pricing-grid" role="tabpanel" aria-labelledby={tab === 'sin-web' ? 'tab-sin-web' : 'tab-con-web'} className="pricing-grid">
+      <div className="pricing-tabs" role="tablist" aria-label="Marketing">
+        <button
+          type="button"
+          role="tab"
+          aria-selected={marketingTab === 'sin-marketing'}
+          aria-controls="pricing-grid"
+          id="tab-sin-marketing"
+          className={cn('pricing-tab', marketingTab === 'sin-marketing' && 'pricing-tab--active')}
+          onClick={() => setMarketingTab('sin-marketing')}
+        >
+          Sin marketing
+        </button>
+        <button
+          type="button"
+          role="tab"
+          aria-selected={marketingTab === 'con-marketing'}
+          aria-controls="pricing-grid"
+          id="tab-con-marketing"
+          className={cn('pricing-tab', marketingTab === 'con-marketing' && 'pricing-tab--active')}
+          onClick={() => setMarketingTab('con-marketing')}
+        >
+          Con marketing
+        </button>
+      </div>
+
+      <div
+        id="pricing-grid"
+        role="tabpanel"
+        aria-labelledby={websiteTab === 'sin-web' ? 'tab-sin-web' : 'tab-con-web'}
+        className="pricing-grid"
+      >
         {plans.map((plan) => (
           <PricingCard
             key={plan.id}
@@ -61,9 +96,9 @@ export function Pricing() {
             result={plan.result}
             cta={plan.cta}
             ctaHref={plan.ctaHref}
-            onCtaClick={(planName) => openScheduleModal(`${planName} ${tab === 'con-web' ? '(Con web)' : '(Sin web)'}`)}
+            onCtaClick={(planName) => openScheduleModal(`${planName} ${websiteLabel} ${marketingLabel}`)}
             popular={plan.popular}
-            color={PLAN_COLORS[plan.id.replace(/-web$/, '')] ?? PLAN_COLORS[plan.id] ?? '#2563eb'}
+            color={PLAN_COLORS_PDF[plan.id] ?? '#2563eb'}
             dimmed={hoveredId !== null && hoveredId !== plan.id}
             onHoverStart={() => setHoveredId(plan.id)}
             onHoverEnd={() => setHoveredId(null)}
@@ -76,9 +111,13 @@ export function Pricing() {
       </p>
 
       <p className="pricing-cta-note">
-        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+        <button
+          type="button"
+          className="pricing-cta-link"
+          onClick={() => openScheduleModal('Planes')}
+        >
           ¿No sabes cuál elegir? Habla con nosotros →
-        </a>
+        </button>
       </p>
     </div>
   );
