@@ -36,6 +36,7 @@
   --section-padding-y: clamp(3rem, 6vw, 5rem);
   --section-padding-x: clamp(1rem, 4vw, 2rem);
   --content-max: 960px;
+  --font-title: 'Bricolage Grotesque', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   --font-sans: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
 }
 
@@ -60,6 +61,16 @@ body {
   background-size: cover;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Titles (all headings) use Bricolage Grotesque */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-title);
 }
 
 /* Global scrollbar — matches page (dark, soft, thin) */
