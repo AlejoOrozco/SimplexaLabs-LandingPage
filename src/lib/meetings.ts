@@ -11,6 +11,7 @@ import { db } from './firebase';
 
 const MEETINGS_COLLECTION = 'meetings';
 const STORAGE_KEY_SUBMITTED = 'simplexalabs_meeting_submitted';
+const MEETINGS_API_URL = import.meta.env.VITE_MEETINGS_API_URL;
 
 /** User IDs to assign new meetings to (from env; not hardcoded). */
 function getDefaultAssignedUserIds(): string[] {
@@ -73,10 +74,9 @@ export function markSubmittedFromThisDevice(): void {
 }
 
 /**
- * Create a new meeting document with serverTimestamp for createdAt/updatedAt.
- * Returns the new document id, or throws on error.
+ * Core Firestore write used as a fallback when no external API is configured.
  */
-export async function createMeeting(payload: MeetingPayload): Promise<string> {
+async function createMeetingDirectToFirestore(payload: MeetingPayload): Promise<string> {
   const normalizedEmail = payload.guestEmail.trim().toLowerCase();
   const defaultIds = getDefaultAssignedUserIds();
   const assignedToUserIds =
@@ -99,4 +99,56 @@ export async function createMeeting(payload: MeetingPayload): Promise<string> {
     updatedAt: serverTimestamp(),
   });
   return ref.id;
+}
+
+/**
+ * Create a new meeting.
+ * - If VITE_MEETINGS_API_URL is set, send the payload to that API (recommended for production).
+ * - Otherwise, fall back to writing directly to Firestore from the client.
+ */
+export async function createMeeting(payload: MeetingPayload): Promise<string> {
+  const defaultIds = getDefaultAssignedUserIds();
+  const assignedToUserIds =
+    payload.assignedToUserIds && payload.assignedToUserIds.length > 0
+      ? payload.assignedToUserIds
+      : defaultIds.length > 0
+        ? defaultIds
+        : [];
+
+  if (MEETINGS_API_URL) {
+    const body = {
+      ...payload,
+      guestEmail: payload.guestEmail.trim(),
+      guestName: payload.guestName.trim(),
+      guestPhone: String(payload.guestPhone ?? '').trim(),
+      notes: payload.notes.trim(),
+      scheduledAt: payload.scheduledAt.toISOString(),
+      duration: payload.duration,
+      plan: payload.plan ?? null,
+      assignedToUserIds,
+    };
+
+    const res = await fetch(MEETINGS_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+
+    if (!res.ok) {
+      let message = 'No se pudo agendar. Intenta de nuevo.';
+      try {
+        const data = await res.json();
+        if (data?.error) message = data.error;
+      } catch {
+        // ignore JSON parse errors
+      }
+      throw new Error(message);
+    }
+
+    const data = await res.json().catch(() => ({}));
+    return data.id ?? '';
+  }
+
+  // Fallback: direct Firestore write (useful for local/dev)
+  return createMeetingDirectToFirestore({ ...payload, assignedToUserIds });
 }
