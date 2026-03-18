@@ -109,7 +109,7 @@ function App() {
           </Suspense>
         </LazySection>
 
-        <LazySection id="faq" ariaLabel="Preguntas frecuentes" placeholderMinHeight={360} className="section section--alt">
+        <LazySection id="faq" ariaLabel="Preguntas frecuentes" placeholderMinHeight={360} className="section section--gradient-bg">
           <Suspense fallback={<SectionFallback />}>
             <FAQ />
           </Suspense>
