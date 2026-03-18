@@ -3,13 +3,6 @@ import { Button, CtaBorderWrap } from '../components';
 import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
 import { WHATSAPP_URL } from '../constants';
 
-const STATS = [
-  { value: '24/7', label: 'Atención sin parar' },
-  { value: '3×', label: 'Más leads calificados' },
-  { value: '−80%', label: 'Tiempo en tareas repetitivas' },
-  { value: '+40%', label: 'Conversión de leads' },
-];
-
 export function CTAFinal() {
   const { openScheduleModal } = useScheduleMeeting();
   return (
@@ -17,26 +10,6 @@ export function CTAFinal() {
       {/* Glow orbs */}
       <div className="cta-final__orb cta-final__orb--blue" aria-hidden="true" />
       <div className="cta-final__orb cta-final__orb--purple" aria-hidden="true" />
-
-      {/* Stats row */}
-      <motion.div
-        className="cta-final__stats"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.4 }}
-        variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
-      >
-        {STATS.map((s) => (
-          <motion.div
-            key={s.label}
-            className="cta-final__stat"
-            variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
-          >
-            <span className="cta-final__stat-value">{s.value}</span>
-            <span className="cta-final__stat-label">{s.label}</span>
-          </motion.div>
-        ))}
-      </motion.div>
 
       {/* Headline */}
       <motion.h2

@@ -139,7 +139,7 @@ export function ComoFunciona() {
           {steps.map((step, i) => (
             <div
               key={step.num}
-              className="steps__card card--glass-light"
+              className="steps__card card--glass"
               ref={(el) => { cardRefs.current[i] = el; }}
             >
               {/* Mobile-only step number badge */}

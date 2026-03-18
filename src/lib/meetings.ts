@@ -12,6 +12,16 @@ import { db } from './firebase';
 const MEETINGS_COLLECTION = 'meetings';
 const STORAGE_KEY_SUBMITTED = 'simplexalabs_meeting_submitted';
 
+/** User IDs to assign new meetings to (from env; not hardcoded). */
+function getDefaultAssignedUserIds(): string[] {
+  const brandon = import.meta.env.VITE_BRANDON_FIREBASE_ID;
+  const alejandro = import.meta.env.VITE_ALEJANDRO_FIREBASE_ID;
+  const ids: string[] = [];
+  if (typeof brandon === 'string' && brandon) ids.push(brandon);
+  if (typeof alejandro === 'string' && alejandro) ids.push(alejandro);
+  return ids.length > 0 ? ids : [];
+}
+
 export interface MeetingPayload {
   guestName: string;
   guestEmail: string;
@@ -20,6 +30,9 @@ export interface MeetingPayload {
   duration: number;
   notes: string;
   plan?: string;
+  /** Prefer this: assign meeting to multiple users. */
+  assignedToUserIds?: string[];
+  /** @deprecated Use assignedToUserIds. Kept for migration. */
   assignedToUserId?: string;
 }
 
@@ -65,8 +78,16 @@ export function markSubmittedFromThisDevice(): void {
  */
 export async function createMeeting(payload: MeetingPayload): Promise<string> {
   const normalizedEmail = payload.guestEmail.trim().toLowerCase();
+  const defaultIds = getDefaultAssignedUserIds();
+  const assignedToUserIds =
+    payload.assignedToUserIds && payload.assignedToUserIds.length > 0
+      ? payload.assignedToUserIds
+      : defaultIds.length > 0
+        ? defaultIds
+        : [];
+
   const ref = await addDoc(collection(db, MEETINGS_COLLECTION), {
-    assignedToUserId: payload.assignedToUserId ?? '6lYCxevhTUhqZIMnXsFj86EJgsr2',
+    assignedToUserIds,
     createdAt: serverTimestamp(),
     duration: payload.duration,
     guestEmail: normalizedEmail,

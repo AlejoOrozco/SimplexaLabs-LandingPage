@@ -31,79 +31,79 @@ function App() {
     <ScheduleMeetingProvider>
       <Header />
       <main>
-        <LazySection id="hero" ariaLabel="Inicio" placeholderMinHeight={420} className="section hero">
+        <LazySection id="hero" ariaLabel="Inicio" placeholderMinHeight={420} className="section section--gradient-bg hero">
           <Suspense fallback={<SectionFallback />}>
             <Hero />
           </Suspense>
         </LazySection>
 
-        <LazySection id="problema" ariaLabel="El problema" placeholderMinHeight={320} className="section section--alt">
+        <LazySection id="problema" ariaLabel="El problema" placeholderMinHeight={320} className="section section--gradient-bg">
           <Suspense fallback={<SectionFallback />}>
             <Problema />
           </Suspense>
         </LazySection>
 
-        <LazySection id="solucion" ariaLabel="La solución" placeholderMinHeight={260} className="section">
+        <LazySection id="solucion" ariaLabel="La solución" placeholderMinHeight={260} className="section section--gradient-bg">
           <Suspense fallback={<SectionFallback />}>
             <Solucion />
           </Suspense>
         </LazySection>
 
-        <LazySection id="que-hace-empleado" ariaLabel="Qué hace el empleado digital" placeholderMinHeight={380} className="section section--alt">
+        <LazySection id="que-hace-empleado" ariaLabel="Qué hace el empleado digital" placeholderMinHeight={380} className="section section--gradient-bg">
           <Suspense fallback={<SectionFallback />}>
             <QueHaceEmpleado />
           </Suspense>
         </LazySection>
 
-        <LazySection id="beneficios" ariaLabel="Beneficios" placeholderMinHeight={360} className="section">
+        <LazySection id="beneficios" ariaLabel="Beneficios" placeholderMinHeight={360} className="section section--gradient-bg">
           <Suspense fallback={<SectionFallback />}>
             <BeneficiosROI />
           </Suspense>
         </LazySection>
 
-        <LazySection id="como-funciona" ariaLabel="Cómo funciona" placeholderMinHeight={320} className="section section--alt">
+        <LazySection id="como-funciona" ariaLabel="Cómo funciona" placeholderMinHeight={320} className="section section--gradient-bg section--alt">
           <Suspense fallback={<SectionFallback />}>
             <ComoFunciona />
           </Suspense>
         </LazySection>
 
-        <LazySection id="crm" ariaLabel="CRM y automatización" placeholderMinHeight={380} className="section section--crm">
+        <LazySection id="crm" ariaLabel="CRM y automatización" placeholderMinHeight={380} className="section section--gradient-bg section--crm">
           <Suspense fallback={<SectionFallback />}>
             <CrmAutomatizacion />
           </Suspense>
         </LazySection>
 
-        <LazySection id="marketing-content" ariaLabel="Contenido de marketing con IA" placeholderMinHeight={380} className="section section--alt section--marketing-content">
+        <LazySection id="marketing-content" ariaLabel="Contenido de marketing con IA" placeholderMinHeight={380} className="section section--gradient-bg section--alt section--marketing-content">
           <Suspense fallback={<SectionFallback />}>
             <MarketingContent />
           </Suspense>
         </LazySection>
 
-        <LazySection id="programa-fundador" ariaLabel="Programa Fundador" placeholderMinHeight={420} className="section section--programa-fundador">
+        <LazySection id="programa-fundador" ariaLabel="Programa Fundador" placeholderMinHeight={420} className="section section--gradient-bg section--programa-fundador">
           <Suspense fallback={<SectionFallback />}>
             <ProgramaFundador />
           </Suspense>
         </LazySection>
 
-        <LazySection id="pricing" ariaLabel="Planes y precios" placeholderMinHeight={400} className="section">
+        <LazySection id="pricing" ariaLabel="Planes y precios" placeholderMinHeight={400} className="section section--gradient-bg">
           <Suspense fallback={<SectionFallback />}>
             <Pricing />
           </Suspense>
         </LazySection>
 
-        <LazySection id="addon-sitio" ariaLabel="Sitio web con IA" placeholderMinHeight={320} className="section section--alt">
+        <LazySection id="addon-sitio" ariaLabel="Sitio web con IA" placeholderMinHeight={320} className="section section--gradient-bg section--alt">
           <Suspense fallback={<SectionFallback />}>
             <AddOnSitioWeb />
           </Suspense>
         </LazySection>
 
-        <LazySection id="casos-de-uso" ariaLabel="Casos de uso" placeholderMinHeight={340} className="section">
+        <LazySection id="casos-de-uso" ariaLabel="Casos de uso" placeholderMinHeight={340} className="section section--gradient-bg">
           <Suspense fallback={<SectionFallback />}>
             <CasosDeUso />
           </Suspense>
         </LazySection>
 
-        <LazySection id="testimonios" ariaLabel="Testimonios" placeholderMinHeight={400} className="section section--alt">
+        <LazySection id="testimonios" ariaLabel="Testimonios" placeholderMinHeight={400} className="section section--gradient-bg section--alt">
           <Suspense fallback={<SectionFallback />}>
             <Testimonios />
           </Suspense>
@@ -115,7 +115,7 @@ function App() {
           </Suspense>
         </LazySection>
 
-        <LazySection id="cta-final" ariaLabel="Empezar ahora" placeholderMinHeight={280} className="section cta-final">
+        <LazySection id="cta-final" ariaLabel="Empezar ahora" placeholderMinHeight={280} className="section section--gradient-bg cta-final">
           <Suspense fallback={<SectionFallback />}>
             <CTAFinal />
           </Suspense>

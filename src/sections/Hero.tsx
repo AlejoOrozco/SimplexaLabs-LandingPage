@@ -1,5 +1,13 @@
+import { motion } from 'motion/react';
 import { Button, BackgroundPaths, CtaBorderWrap } from '../components';
 import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
+
+const STATS = [
+  { value: '24/7', label: 'Atención sin parar' },
+  { value: '3×', label: 'Más leads calificados' },
+  { value: '−80%', label: 'Tiempo en tareas repetitivas' },
+  { value: '+40%', label: 'Conversión de leads' },
+];
 
 const BENEFITS = [
   'Responde clientes al instante en WhatsApp, Instagram y tu sitio web',
@@ -15,6 +23,27 @@ export function Hero() {
     <>
       <BackgroundPaths />
       <div className="section__inner hero__content">
+        <motion.div
+          className="hero__stats"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.4 }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+        >
+          {STATS.map((s) => (
+            <motion.div
+              key={s.label}
+              className="hero__stat"
+              variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+            >
+              <span className="hero__stat-value">{s.value}</span>
+              <span className="hero__stat-label">{s.label}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+        <p className="hero__fundador-alert" role="status">
+          Prueba el Plan Fundador de SimpLexaLabs — Solo 2 plazas disponibles. Precio bloqueado de por vida.
+        </p>
         <h1 className="hero__title">
           Empleados Digitales con IA que responden, venden y hacen seguimiento 24/7
         </h1>

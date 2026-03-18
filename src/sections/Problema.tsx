@@ -1,4 +1,4 @@
-import { ShimmerText, FadeInWords, BlurBlobs } from '../components';
+import { ShimmerText, FadeInWords } from '../components';
 
 const PAIN_POINTS = [
   'Demasiados mensajes en WhatsApp',
@@ -14,14 +14,8 @@ const PAIN_POINTS = [
 export function Problema() {
   return (
     <>
-      <BlurBlobs
-        colors={['#c4b5fd', '#7c3aed', '#93c5fd', '#a78bfa']}
-        blur={120}
-        speed={3}
-        opacity={0.45}
-      />
       <div className="section__inner problema__content">
-        <h2 className="section__title section__title--two-lines">
+        <h2 className="section__title section__title--two-lines section__title--gradient">
           <span className="section__title-line">
             <span className="section__title-muted">Tu negocio no está perdiendo </span>
             <ShimmerText text="chats" className="section__title-shimmer" />

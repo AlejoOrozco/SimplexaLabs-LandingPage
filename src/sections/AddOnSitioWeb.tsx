@@ -91,7 +91,7 @@ export function AddOnSitioWeb() {
                   key={feature.title}
                   variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
                 >
-                  <Card className="card--glass-light addon-feature-card">
+                  <Card className="card--glass addon-feature-card">
                     <div className="addon-feature-card__icon">
                       <Icon size={17} strokeWidth={1.9} />
                     </div>

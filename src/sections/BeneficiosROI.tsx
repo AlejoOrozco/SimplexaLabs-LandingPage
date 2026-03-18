@@ -17,7 +17,7 @@ export function BeneficiosROI() {
       </p>
       <div className="card-grid card-grid--2">
         {items.map((item, i) => (
-          <Card key={i} title={item.title} text={item.text} className="card--glass-light" />
+          <Card key={i} title={item.title} text={item.text} className="card--glass" />
         ))}
       </div>
     </div>

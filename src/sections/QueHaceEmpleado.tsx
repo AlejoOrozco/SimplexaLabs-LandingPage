@@ -43,7 +43,7 @@ export function QueHaceEmpleado() {
         hueStart={210}
         hueRange={160}
         count={1200}
-        bg="8, 12, 28"
+        bg="15, 23, 42"
       />
       <div className="section__inner que-hace__content">
         <h2 className="section__title que-hace__title">
