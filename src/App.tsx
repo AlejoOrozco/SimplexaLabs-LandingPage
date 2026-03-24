@@ -9,6 +9,7 @@ const ChatWidget = lazy(() =>
 );
 const Hero = lazy(() => import('./sections/Hero').then((m) => ({ default: m.Hero })));
 const Problema = lazy(() => import('./sections/Problema').then((m) => ({ default: m.Problema })));
+const AgentDemo = lazy(() => import('./sections/AgentDemo').then((m) => ({ default: m.AgentDemo })));
 const CasosDeUso = lazy(() => import('./sections/CasosDeUso').then((m) => ({ default: m.CasosDeUso })));
 const ComoFunciona = lazy(() => import('./sections/ComoFunciona').then((m) => ({ default: m.ComoFunciona })));
 const ShowcaseSitioReal = lazy(() =>
@@ -42,6 +43,17 @@ function App() {
         >
           <Suspense fallback={<SectionFallback />}>
             <Problema />
+          </Suspense>
+        </LazySection>
+
+        <LazySection
+          id="ejemplo-agente"
+          ariaLabel="Ejemplo de agente en WhatsApp"
+          placeholderMinHeight={520}
+          className="section section--gradient-bg section--agent-demo"
+        >
+          <Suspense fallback={<SectionFallback />}>
+            <AgentDemo />
           </Suspense>
         </LazySection>
 

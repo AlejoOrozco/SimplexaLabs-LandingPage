@@ -1,10 +1,22 @@
 import { ElegantShapes } from '../components/ElegantShapes';
 
 const PROBLEMS = [
-  'Tu negocio necesita presencia digital, pero no tienes tiempo de aprenderlo todo',
-  'Pagas por herramientas que nadie sabe usar bien en tu equipo',
-  'Pierdes clientes potenciales porque nadie responde rápido en WhatsApp o Instagram',
-  'Tu sitio web existe, pero no genera nada',
+  {
+    title: 'Sin tiempo para el digital',
+    text: 'Tu negocio necesita presencia online, pero no puedes dedicarle horas a aprender cada herramienta.',
+  },
+  {
+    title: 'Herramientas que nadie termina de usar',
+    text: 'Pagas licencias y suscripciones que tu equipo no aprovecha al máximo.',
+  },
+  {
+    title: 'Leads que se enfrían',
+    text: 'Pierdes clientes potenciales porque nadie responde rápido en WhatsApp o Instagram.',
+  },
+  {
+    title: 'Web que no genera nada',
+    text: 'Tu sitio existe, pero no trae citas, ventas ni leads que puedas medir.',
+  },
 ];
 
 const SOLUTIONS = [
@@ -38,12 +50,15 @@ export function Problema() {
           <div className="problema-solucion__col problema-solucion__col--pain">
             <h3 className="problema-solucion__col-title">Sin un sistema claro…</h3>
             <ul className="problema-solucion__list problema-solucion__list--pain">
-              {PROBLEMS.map((text) => (
-                <li key={text}>
+              {PROBLEMS.map((item) => (
+                <li key={item.title}>
                   <span className="problema-solucion__x" aria-hidden="true">
                     ✕
                   </span>
-                  <span>{text}</span>
+                  <div>
+                    <strong className="problema-solucion__pain-title">{item.title}</strong>
+                    <p className="problema-solucion__pain-text">{item.text}</p>
+                  </div>
                 </li>
               ))}
             </ul>
