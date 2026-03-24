@@ -13,6 +13,8 @@ interface ButtonProps {
   rel?: string;
   onClick?: () => void;
   disabled?: boolean;
+  /** Accessible name when visible label is decorative (e.g. marquee) */
+  ariaLabel?: string;
 }
 
 /**
@@ -30,6 +32,7 @@ export function Button({
   rel,
   onClick,
   disabled,
+  ariaLabel,
 }: ButtonProps) {
   const baseClass = 'btn';
   const variantClass = variant === 'primary' ? 'btn--primary' : 'btn--secondary';
@@ -37,14 +40,14 @@ export function Button({
 
   if (href !== undefined) {
     return (
-      <a href={href} className={fullClass} target={target} rel={rel}>
+      <a href={href} className={fullClass} target={target} rel={rel} aria-label={ariaLabel}>
         <span className="btn__label">{children}</span>
       </a>
     );
   }
 
   return (
-    <button type={type} className={fullClass} onClick={onClick} disabled={disabled}>
+    <button type={type} className={fullClass} onClick={onClick} disabled={disabled} aria-label={ariaLabel}>
       <span className="btn__label">{children}</span>
     </button>
   );

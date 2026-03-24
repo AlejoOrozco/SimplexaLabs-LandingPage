@@ -41,12 +41,18 @@ export function Hero() {
           <CtaBorderWrap>
             <Button
               variant="primary"
-              className="btn--hero-primary"
+              className="btn--hero-primary btn--marquee-overflow"
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
+              ariaLabel="Quiero que lo construyan para mí — abre WhatsApp"
             >
-              Quiero que lo construyan para mí →
+              <span className="btn__marquee" aria-hidden="true">
+                <span className="btn__marquee-track">
+                  <span className="btn__marquee-item">Quiero que lo construyan para mí →</span>
+                  <span className="btn__marquee-item">Quiero que lo construyan para mí →</span>
+                </span>
+              </span>
             </Button>
           </CtaBorderWrap>
           <Button variant="secondary" href="#how-it-works">

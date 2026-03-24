@@ -402,6 +402,11 @@ a:hover {
   animation: btn-marquee-scroll 9s linear infinite;
 }
 
+/* Hero primary CTA: a bit slower so the sentence is readable while it loops */
+.hero__ctas .btn--marquee-overflow .btn__marquee-track {
+  animation-duration: 14s;
+}
+
 .btn__marquee-item {
   white-space: nowrap;
   padding-right: 2rem; /* space between repeats without breaking seamless loop */
