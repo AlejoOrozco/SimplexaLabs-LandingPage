@@ -76,7 +76,6 @@ const INDUSTRIES: IndustryTab[] = [
     ],
     result:
       'Resultado típico: Más ventas completadas, menos preguntas sin responder, seguimiento automático que cierra lo que quedó pendiente.',
-    extraNote: '$497 USD/mes (contrato anual) + $697 configuración',
     cta: 'Quiero esto para mi tienda online',
   },
   {
