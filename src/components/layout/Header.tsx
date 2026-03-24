@@ -11,24 +11,18 @@ export function Header() {
           SimpLexaLabs
         </a>
         <nav className="header__nav" aria-label="Principal">
-          <a href="#hero">Inicio</a>
-          <a href="#como-funciona">Cómo funciona</a>
-          <a href="#pricing">Planes</a>
-          <a href="#faq">FAQ</a>
+          <a href="#problema-solucion">Servicios</a>
+          <a href="#pricing">Precios</a>
+          <a href="#programa-fundador">Nosotros</a>
+          <a href="#how-it-works">Cómo funciona</a>
+          <a href="#cta-final">Contacto</a>
           <CtaBorderWrap>
             <Button
               variant="primary"
-              className="btn--hero-primary btn--marquee-overflow header__cta"
-              onClick={() => openScheduleModal('Prueba gratis')}
+              className="btn--hero-primary header__cta"
+              onClick={() => openScheduleModal('Demo Gratis')}
             >
-              <span className="btn__marquee" aria-label="Prueba gratis">
-                <span className="btn__marquee-track">
-                  <span className="btn__marquee-item">Prueba gratis</span>
-                  <span className="btn__marquee-item" aria-hidden="true">
-                    Prueba gratis
-                  </span>
-                </span>
-              </span>
+              Demo Gratis
             </Button>
           </CtaBorderWrap>
         </nav>

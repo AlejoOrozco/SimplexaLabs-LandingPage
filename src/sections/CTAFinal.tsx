@@ -7,11 +7,19 @@ export function CTAFinal() {
   const { openScheduleModal } = useScheduleMeeting();
   return (
     <div className="section__inner cta-final__inner">
-      {/* Glow orbs */}
       <div className="cta-final__orb cta-final__orb--blue" aria-hidden="true" />
       <div className="cta-final__orb cta-final__orb--purple" aria-hidden="true" />
 
-      {/* Headline */}
+      <motion.p
+        className="cta-final__eyebrow"
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.45 }}
+      >
+        — Agenda tu llamada
+      </motion.p>
+
       <motion.h2
         className="section__title cta-final__title"
         initial={{ opacity: 0, y: 28 }}
@@ -19,7 +27,7 @@ export function CTAFinal() {
         viewport={{ once: true, amount: 0.4 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
-        Deja de perder tiempo, leads y ventas por operar manualmente
+        ¿Listo para que lo construyamos para ti?
       </motion.h2>
 
       <motion.p
@@ -29,11 +37,10 @@ export function CTAFinal() {
         viewport={{ once: true, amount: 0.4 }}
         transition={{ duration: 0.5, ease: 'easeOut', delay: 0.1 }}
       >
-        Empieza hoy con SimpLexaLabs y descubre cómo un empleado digital con IA
-        puede trabajar 24/7 para tu negocio.
+        Agenda una llamada de 30 minutos. Sin costo. Sin compromiso. Solo cuéntanos sobre tu negocio y te decimos
+        exactamente qué construiríamos para ti.
       </motion.p>
 
-      {/* CTAs */}
       <motion.div
         className="hero__ctas"
         initial={{ opacity: 0, y: 16 }}
@@ -44,23 +51,17 @@ export function CTAFinal() {
         <CtaBorderWrap>
           <Button
             variant="primary"
-            className="btn--hero-primary btn--marquee-overflow"
-            onClick={() => openScheduleModal('Prueba gratis')}
+            className="btn--hero-primary"
+            onClick={() => openScheduleModal('Agendar llamada gratuita')}
           >
-            <span className="btn__marquee" aria-label="Comienza tu prueba gratis">
-              <span className="btn__marquee-track">
-                <span className="btn__marquee-item">Comienza tu prueba gratis →</span>
-                <span className="btn__marquee-item" aria-hidden="true">Comienza tu prueba gratis →</span>
-              </span>
-            </span>
+            Agendar mi llamada gratuita →
           </Button>
         </CtaBorderWrap>
         <Button href={WHATSAPP_URL} variant="secondary" target="_blank" rel="noopener noreferrer">
-          Hablar con ventas →
+          Escribir por WhatsApp →
         </Button>
       </motion.div>
 
-      {/* Microcopy */}
       <motion.p
         className="hero__microcopy"
         initial={{ opacity: 0 }}
@@ -68,7 +69,7 @@ export function CTAFinal() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        7 días gratis · Sin tarjeta de crédito · Cancela cuando quieras
+        Contratos anuales. Configuración incluida. Operación mensual gestionada por nosotros.
       </motion.p>
     </div>
   );

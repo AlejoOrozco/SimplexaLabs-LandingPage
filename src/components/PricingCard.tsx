@@ -9,6 +9,7 @@ const TILT_SPRING = { stiffness: 300, damping: 28 } as const;
 const GLOW_SPRING = { stiffness: 180, damping: 22 } as const;
 
 export function PricingCard({
+  id,
   name,
   price,
   period,
@@ -58,6 +59,7 @@ export function PricingCard({
 
   return (
     <motion.article
+      id={id}
       ref={cardRef}
       aria-label={`Plan ${name}`}
       animate={{
@@ -111,7 +113,9 @@ export function PricingCard({
           <li key={i}>{f}</li>
         ))}
       </ul>
-      <p className="pricing-card__result">{result}</p>
+      {result != null && result !== '' && (
+        <p className="pricing-card__result">{result}</p>
+      )}
       {onCtaClick ? (
         <Button
           type="button"

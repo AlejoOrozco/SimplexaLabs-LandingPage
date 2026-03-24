@@ -1,73 +1,102 @@
-import { motion, type Variants } from 'motion/react';
+import { useState } from 'react';
+import { motion } from 'motion/react';
+import { Button } from '../components';
+import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
+import { cn } from '@/lib/utils';
 
-const CASOS = [
+type IndustryTab = {
+  id: string;
+  label: string;
+  emoji: string;
+  question: string;
+  intro?: string;
+  features?: string[];
+  result?: string;
+  extraNote?: string;
+  cta?: string;
+  /** Tab 5: link to packages instead of long form */
+  packagesOnly?: boolean;
+};
+
+const INDUSTRIES: IndustryTab[] = [
   {
+    id: 'clinicas',
+    label: 'Clínicas y Consultorios',
     emoji: '🏥',
-    title: 'Clínicas y estéticas',
-    text: 'Responde dudas, filtra interesados y mueve más conversaciones hacia valoración o cita.',
-    roi: '+3× más citas agendadas',
-    accent: 'caso--violet',
-    wide: true,
+    question: '¿Cuántos pacientes pierdes cada semana porque nadie contestó a tiempo?',
+    features: [
+      'Agente de IA que responde WhatsApp e Instagram 24/7, agenda citas y responde preguntas frecuentes',
+      'Sitio web con tus servicios, precios y botón de agendamiento directo',
+      'Contenido mensual para redes (procedimientos, tips de salud, testimonios)',
+      'Recordatorios automáticos de citas para reducir inasistencias',
+    ],
+    result: 'Resultado típico: Más citas agendadas, menos trabajo manual para tu recepcionista.',
+    cta: 'Quiero esto para mi clínica',
   },
   {
-    emoji: '🦷',
-    title: 'Odontología',
-    text: 'Automatiza preguntas frecuentes, captura leads y mejora seguimiento a pacientes potenciales.',
-    roi: '−70% mensajes sin respuesta',
-    accent: 'caso--blue',
-    wide: false,
-  },
-  {
+    id: 'gimnasios',
+    label: 'Gimnasios y Centros Fitness',
     emoji: '💪',
-    title: 'Gimnasios y fitness',
-    text: 'Atiende consultas sobre planes, horarios, mensualidades y seguimiento comercial.',
-    roi: '+40% conversión de leads',
-    accent: 'caso--teal',
-    wide: false,
+    question: '¿Tus leads preguntan por membresías y nadie les responde a tiempo?',
+    features: [
+      'Agente de IA que responde consultas de membresías, horarios y clases de prueba a cualquier hora',
+      'Sitio web con tus planes, instalaciones y formulario de inscripción',
+      'Contenido mensual para redes (transformaciones, rutinas, promociones)',
+      'Automatización de seguimiento para leads que no cerraron en el primer contacto',
+    ],
+    result: 'Resultado típico: Más inscripciones sin contratar más personal de ventas.',
+    cta: 'Quiero esto para mi gimnasio',
   },
   {
+    id: 'pymes',
+    label: 'Negocios y PYMEs',
     emoji: '🏢',
-    title: 'Agencias y servicios',
-    text: 'Filtra leads, responde más rápido y evita perder oportunidades por falta de seguimiento.',
-    roi: '−60% tiempo en consultas',
-    accent: 'caso--indigo',
-    wide: false,
+    question: '¿Tu negocio no tiene presencia digital o la que tiene no genera clientes?',
+    features: [
+      'Sitio web profesional que posiciona tu negocio en Google y convierte visitantes en contactos',
+      'Sistema de respuesta automática para WhatsApp e Instagram',
+      'Contenido mensual para redes que muestra lo que haces y genera confianza',
+      'Automatizaciones de seguimiento para que ningún lead se pierda',
+    ],
+    result:
+      'Resultado típico: Presencia digital completa, funcionando, sin depender de agencias que desaparecen.',
+    cta: 'Quiero esto para mi negocio',
   },
   {
-    emoji: '🏠',
-    title: 'Inmobiliarias y constructoras',
-    text: 'Califica leads, agenda visitas y hace seguimiento automático para no perder una venta.',
-    roi: '+5× leads calificados',
-    accent: 'caso--purple',
-    wide: false,
+    id: 'ecommerce',
+    label: 'Tiendas Online y E-Commerce',
+    emoji: '🛒',
+    question: '¿Cuántas ventas estás perdiendo porque nadie hace seguimiento automático?',
+    features: [
+      'Tienda online profesional con hasta 50 productos cargados (Shopify o WooCommerce)',
+      'Agente de IA que responde preguntas de productos, disponibilidad y pedidos por WhatsApp 24/7',
+      'Automatización de recuperación de carritos abandonados',
+      'Contenido mensual de productos para redes (promociones, lanzamientos, temporadas)',
+      'Reporte mensual de ventas y conversaciones',
+    ],
+    result:
+      'Resultado típico: Más ventas completadas, menos preguntas sin responder, seguimiento automático que cierra lo que quedó pendiente.',
+    extraNote: '$497 USD/mes (contrato anual) + $697 configuración',
+    cta: 'Quiero esto para mi tienda online',
   },
   {
-    emoji: '🚗',
-    title: 'Concesionarios y seguros',
-    text: 'Agenda pruebas de manejo, cotizaciones y citas sin que se pierda ningún mensaje.',
-    roi: '+50% citas de prueba',
-    accent: 'caso--amber',
-    wide: false,
-  },
-  {
-    emoji: '🍽️',
-    title: 'Restaurantes y food service',
-    text: 'Toma reservas, responde horarios y pedidos sin saturar el teléfono ni perder llamadas.',
-    roi: '−80% llamadas perdidas',
-    accent: 'caso--rose',
-    wide: true,
+    id: 'ya-tienes',
+    label: '¿Ya tienes algo?',
+    emoji: '✨',
+    question: '¿Ya tienes algo pero necesitas más?',
+    intro:
+      'No empezamos desde cero si ya tienes una parte funcionando. Elige solo lo que te falta — lo integramos con lo que ya tienes.',
+    packagesOnly: true,
   },
 ];
 
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } },
-};
-
 export function CasosDeUso() {
+  const [active, setActive] = useState(0);
+  const { openScheduleModal } = useScheduleMeeting();
+  const tab = INDUSTRIES[active];
+
   return (
-    <div className="section__inner casos-section__inner">
-      {/* Header */}
+    <div className="section__inner casos-section__inner casos-section__inner--tabs">
       <motion.div
         className="casos__header"
         initial={{ opacity: 0, y: 24 }}
@@ -75,58 +104,73 @@ export function CasosDeUso() {
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.55, ease: 'easeOut' }}
       >
-        <span className="casos__eyebrow">Para quién es</span>
-        <h2 className="section__title">
-          Hecho para negocios que viven de responder rápido y vender mejor
-        </h2>
+        <span className="casos__eyebrow">Para tu industria</span>
+        <h2 className="section__title">Hecho para tu tipo de negocio</h2>
         <p className="section__subtitle">
-          Si tu negocio recibe mensajes, genera leads o agenda citas, ya tienes una oportunidad para automatizar.
+          Elige tu sector y revisa qué construimos y operamos para ti.
         </p>
       </motion.div>
 
-      {/* Bento grid */}
-      <motion.div
-        className="casos__bento"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
-        variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.09 } } }}
-      >
-        {/* Row 1: wide (2/3) + narrow (1/3) */}
-        <motion.div variants={cardVariants} className={`caso-card ${CASOS[0].accent} caso-card--wide`}>
-          <CasoCardInner item={CASOS[0]} />
-        </motion.div>
-        <motion.div variants={cardVariants} className={`caso-card ${CASOS[1].accent}`}>
-          <CasoCardInner item={CASOS[1]} />
-        </motion.div>
-
-        {/* Row 2: four cards */}
-        {CASOS.slice(2, 6).map((item) => (
-          <motion.div key={item.title} variants={cardVariants} className={`caso-card ${item.accent} ${item.wide ? 'caso-card--wide' : ''}`}>
-            <CasoCardInner item={item} />
-          </motion.div>
+      <div className="pricing-tabs industria-tabs" role="tablist" aria-label="Industria">
+        {INDUSTRIES.map((item, i) => (
+          <button
+            key={item.id}
+            type="button"
+            role="tab"
+            id={`industria-tab-${item.id}`}
+            aria-selected={active === i}
+            aria-controls="industria-panel"
+            className={cn('pricing-tab', active === i && 'pricing-tab--active')}
+            onClick={() => setActive(i)}
+          >
+            <span className="industria-tab__emoji" aria-hidden="true">
+              {item.emoji}
+            </span>{' '}
+            {item.label}
+          </button>
         ))}
-        {/* Row 3: last card (Restaurantes) */}
-        <motion.div variants={cardVariants} className={`caso-card ${CASOS[6].accent}`}>
-          <CasoCardInner item={CASOS[6]} />
-        </motion.div>
-      </motion.div>
-      <p className="casos__footer">
-        Atención 24/7 sin costo extra · Para cualquier negocio que reciba mensajes
-      </p>
-    </div>
-  );
-}
-
-function CasoCardInner({ item }: { item: typeof CASOS[number] }) {
-  return (
-    <>
-      <div className="caso-card__top">
-        <span className="caso-card__icon" aria-hidden="true">{item.emoji}</span>
-        <span className="caso-card__roi">{item.roi}</span>
       </div>
-      <h3 className="caso-card__title">{item.title}</h3>
-      <p className="caso-card__text">{item.text}</p>
-    </>
+
+      <motion.div
+        id="industria-panel"
+        role="tabpanel"
+        aria-labelledby={`industria-tab-${tab.id}`}
+        className="industria-panel card card--glass"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35 }}
+        key={tab.id}
+      >
+        <h3 className="industria-panel__question">{tab.question}</h3>
+
+        {tab.packagesOnly ? (
+          <>
+            <p className="industria-panel__intro">{tab.intro}</p>
+            <Button variant="primary" href="#pricing" className="industria-panel__cta">
+              Ver paquetes modulares →
+            </Button>
+          </>
+        ) : (
+          <>
+            <p className="industria-panel__sub">Lo que construimos para ti:</p>
+            <ul className="industria-panel__list">
+              {tab.features?.map((f) => (
+                <li key={f}>→ {f}</li>
+              ))}
+            </ul>
+            {tab.result && <p className="industria-panel__result">{tab.result}</p>}
+            {tab.extraNote && <p className="industria-panel__extra">{tab.extraNote}</p>}
+            <Button
+              type="button"
+              variant="primary"
+              className="industria-panel__cta"
+              onClick={() => openScheduleModal(tab.cta ?? tab.label)}
+            >
+              {tab.cta} →
+            </Button>
+          </>
+        )}
+      </motion.div>
+    </div>
   );
 }

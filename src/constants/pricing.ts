@@ -35,7 +35,7 @@ export const PLANS_SIN_WEB: PlanEntry[] = [
     features: [
       '1 AI Agent (WhatsApp LATAM / Chat Web US)',
       'GHL CRM básico — pipeline, contactos, citas',
-      '5 posts de marketing con IA por mes (Holo.ai)',
+      '5 posts de marketing por mes',
       'Inbox unificado WhatsApp + Email',
       'Formulario de leads conectado al CRM',
       'Setup done-for-you en 48 horas',
@@ -57,7 +57,7 @@ export const PLANS_SIN_WEB: PlanEntry[] = [
     features: [
       '2 AI Agents — WhatsApp + Chat Web',
       'GHL CRM completo — pipelines, scoring, 2 usuarios',
-      '15 posts/ads/reels de marketing con IA por mes',
+      '15 posts/ads/reels de marketing por mes',
       '3 workflows de automatización incluidos',
       'Secuencias de nurturing WhatsApp + Email',
       'Agenda de citas con recordatorios automáticos',
@@ -78,7 +78,7 @@ export const PLANS_SIN_WEB: PlanEntry[] = [
     features: [
       '3 AI Agents — WhatsApp + Web + Instagram',
       'GHL CRM premium — ilimitado, 5 usuarios',
-      '30 assets de marketing con IA por mes',
+      '30 assets de marketing por mes',
       'Workflows de automatización ilimitados',
       'Agente AI con personalidad y conocimiento custom',
       'Optimización Google Business Profile',

@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Button, BackgroundPaths, CtaBorderWrap } from '../components';
-import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
+import { WHATSAPP_URL } from '@/constants/contact';
 
 const STATS = [
   { value: '24/7', label: 'Atención sin parar' },
@@ -9,16 +9,7 @@ const STATS = [
   { value: '+40%', label: 'Conversión de leads' },
 ];
 
-const BENEFITS = [
-  'Responde clientes al instante en WhatsApp, Instagram y tu sitio web',
-  'Captura leads, agenda citas y hace seguimiento automático',
-  'Filtra leads automáticamente — solo hablas con quien está listo para comprar',
-  'Genera tu contenido de redes cada mes sin que hagas nada',
-  'Escala con más orden y menos esfuerzo manual',
-];
-
 export function Hero() {
-  const { openScheduleModal } = useScheduleMeeting();
   return (
     <>
       <BackgroundPaths />
@@ -41,55 +32,29 @@ export function Hero() {
             </motion.div>
           ))}
         </motion.div>
-        <p className="hero__fundador-alert" role="status">
-          Prueba el Plan Fundador de SimpLexaLabs — Solo 2 plazas disponibles. Precio bloqueado de por vida.
-        </p>
-        <h1 className="hero__title">
-          Empleados Digitales con IA que responden, venden y hacen seguimiento 24/7
-        </h1>
+        <h1 className="hero__title">Lo construimos todo para ti.</h1>
         <p className="hero__subheadline">
-          Sin contratar más personal. Sin perder otro mensaje. Sin trabajar de más.
+          Sitio web profesional, marketing y automatizaciones que trabajan 24/7 — para
+          clínicas, gimnasios, tiendas online y negocios que quieren crecer sin complicarse.
         </p>
-        <div className="hero__benefits" aria-label="Beneficios clave">
-          <div className="hero__benefits-fade">
-            <div className="hero__benefits-track" role="text">
-              {BENEFITS.map((t, i) => (
-                <span key={`a-${i}`} className="hero__benefit">
-                  <span className="hero__benefit-check" aria-hidden="true">✓</span>
-                  {t}
-                </span>
-              ))}
-              <span className="hero__benefits-gap" aria-hidden="true" />
-              {BENEFITS.map((t, i) => (
-                <span key={`b-${i}`} className="hero__benefit" aria-hidden="true">
-                  <span className="hero__benefit-check">✓</span>
-                  {t}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
         <div className="hero__ctas">
           <CtaBorderWrap>
             <Button
               variant="primary"
-              className="btn--hero-primary btn--marquee-overflow"
-              onClick={() => openScheduleModal('Prueba gratis')}
+              className="btn--hero-primary"
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <span className="btn__marquee" aria-label="Empieza tu prueba gratis — 7 días · Sin tarjeta de crédito">
-                <span className="btn__marquee-track">
-                  <span className="btn__marquee-item">Empieza tu prueba gratis — 7 días · Sin tarjeta de crédito</span>
-                  <span className="btn__marquee-item" aria-hidden="true">Empieza tu prueba gratis — 7 días · Sin tarjeta de crédito</span>
-                </span>
-              </span>
+              Quiero que lo construyan para mí →
             </Button>
           </CtaBorderWrap>
-          <Button variant="secondary" onClick={() => openScheduleModal()}>
-            Ver planes
+          <Button variant="secondary" href="#how-it-works">
+            Ver cómo funciona
           </Button>
         </div>
         <p className="hero__microcopy">
-          7 días gratis · Sin tarjeta de crédito
+          Sin contratos complicados · Setup en 14 días · Tú no tocas nada
         </p>
       </div>
     </>

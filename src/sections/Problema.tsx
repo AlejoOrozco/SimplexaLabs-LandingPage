@@ -1,55 +1,76 @@
-import { ShimmerText, FadeInWords } from '../components';
+import { ElegantShapes } from '../components/ElegantShapes';
 
-const PAIN_POINTS = [
-  'Demasiados mensajes en WhatsApp',
-  'Citas que no se concretan',
-  'Seguimiento manual que nunca se hace',
-  'Leads que se enfrían',
-  'Preguntas repetitivas que quitan tiempo',
-  'Ventas perdidas por responder tarde',
-  'Contenido de redes que nunca se publica',
-  'Sin sistema para saber qué leads están calientes',
+const PROBLEMS = [
+  'Tu negocio necesita presencia digital, pero no tienes tiempo de aprenderlo todo',
+  'Pagas por herramientas que nadie sabe usar bien en tu equipo',
+  'Pierdes clientes potenciales porque nadie responde rápido en WhatsApp o Instagram',
+  'Tu sitio web existe, pero no genera nada',
+];
+
+const SOLUTIONS = [
+  {
+    title: 'Sitio Web Profesional',
+    text: 'Diseñamos y publicamos tu sitio web optimizado para Google, móvil y conversión. Rápido, bonito y hecho para que te encuentren.',
+  },
+  {
+    title: 'Marketing',
+    text: 'Creamos y publicamos tu contenido en redes sociales con inteligencia artificial. 30 piezas de contenido por mes, listo para publicar — sin que muevas un dedo.',
+  },
+  {
+    title: 'Automatizaciones 24/7',
+    text: 'Conectamos tu WhatsApp, Instagram y correo a un sistema que responde, agenda y da seguimiento automáticamente. Tu negocio responde aunque estés dormido.',
+  },
 ];
 
 export function Problema() {
   return (
-    <>
-      <div className="section__inner problema__content">
-        <h2 className="section__title section__title--two-lines section__title--gradient">
-          <span className="section__title-line">
-            <span className="section__title-muted">Tu negocio no está perdiendo </span>
-            <ShimmerText text="chats" className="section__title-shimmer" />
-          </span>
-          <span className="section__title-line">
-            <span className="section__title-muted">Está perdiendo </span>
-            <ShimmerText text="ventas" className="section__title-shimmer" />
-            <span className="section__title-muted">.</span>
-          </span>
-        </h2>
+    <div className="problema-solucion">
+      <ElegantShapes />
+      <div className="section__inner problema-solucion__inner">
+        <p className="problema-solucion__eyebrow">Problema → Solución</p>
+        <h2 className="section__title section__title--two-lines section__title--gradient">¿Te suena familiar?</h2>
+        <p className="section__subtitle problema-solucion__lead">
+          A la izquierda, lo que hoy te frena. A la derecha, lo que construimos y operamos por ti — sin que tengas que
+          volverte experto en herramientas.
+        </p>
 
-        <div className="problema__body">
-          <div className="problema__text">
-            <FadeInWords
-              text="Muchos negocios en Colombia responden tarde, dejan mensajes sin contestar o nunca hacen seguimiento a los prospectos."
-              className="section__copy"
-            />
-            <FadeInWords
-              text="El problema no siempre es la falta de clientes. El problema es que la atención sigue siendo manual, lenta y difícil de escalar."
-              className="section__copy"
-              startDelay={0.4}
-            />
+        <div className="problema-solucion__split">
+          <div className="problema-solucion__col problema-solucion__col--pain">
+            <h3 className="problema-solucion__col-title">Sin un sistema claro…</h3>
+            <ul className="problema-solucion__list problema-solucion__list--pain">
+              {PROBLEMS.map((text) => (
+                <li key={text}>
+                  <span className="problema-solucion__x" aria-hidden="true">
+                    ✕
+                  </span>
+                  <span>{text}</span>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <ul className="problema__points">
-            {PAIN_POINTS.map((point) => (
-              <li key={point} className="problema__point">
-                <span className="problema__point-x" aria-hidden="true">✕</span>
-                {point}
-              </li>
-            ))}
-          </ul>
+          <div className="problema-solucion__col problema-solucion__col--gain">
+            <h3 className="problema-solucion__col-title">Con nosotros…</h3>
+            <ul className="problema-solucion__list problema-solucion__list--gain">
+              {SOLUTIONS.map((item) => (
+                <li key={item.title}>
+                  <span className="problema-solucion__check" aria-hidden="true">
+                    ✓
+                  </span>
+                  <div>
+                    <strong className="problema-solucion__solution-title">{item.title}</strong>
+                    <p className="problema-solucion__solution-text">{item.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
+
+        <p className="problema__transition">
+          Nosotros no te enseñamos a hacerlo. <strong>Lo hacemos por ti.</strong>
+        </p>
       </div>
-    </>
+    </div>
   );
 }

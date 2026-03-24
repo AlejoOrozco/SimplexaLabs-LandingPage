@@ -3,36 +3,33 @@ import { useEffect, useRef } from 'react';
 const steps = [
   {
     num: 1,
-    title: 'Conectamos tus canales',
-    detail: 'WhatsApp, Instagram o tu sitio web.',
+    title: 'Hablamos',
+    detail: 'Nos cuentas sobre tu negocio en una llamada de 30 minutos. Sin tecnicismos.',
   },
   {
     num: 2,
-    title: 'Configuramos tu negocio',
-    detail: 'Entrenamos el agente con tus servicios, preguntas frecuentes, tono y procesos.',
+    title: 'Lo construimos',
+    detail:
+      'En 14 días tu sitio web, agente de IA y sistema de automatización están listos y funcionando.',
   },
   {
     num: 3,
-    title: 'Activamos automatizaciones',
-    detail: 'Respuesta, captura de leads, seguimiento, ventas y citas.',
-  },
-  {
-    num: 4,
-    title: 'Empiezas a operar 24/7',
-    detail: 'Tu negocio atiende más rápido y con menos carga manual.',
+    title: 'Tú creces, nosotros operamos',
+    detail: 'Nosotros gestionamos el sistema mes a mes. Tú solo ves los resultados.',
   },
 ];
 
-const DOT_CX = [150, 450, 750, 1050];
-const DOT_Y  = 120;
+/** Centers for three dots along the 1200-wide SVG */
+const DOT_CX = [300, 600, 900];
+const DOT_Y = 120;
 
-const STAGGER = 0.18; // seconds between each column
+const STAGGER = 0.18;
 
 export function ComoFunciona() {
-  const stepsRef   = useRef<HTMLDivElement>(null);
-  const dotRefs    = useRef<(SVGGElement | null)[]>([]);
-  const numRefs    = useRef<(HTMLSpanElement | null)[]>([]);
-  const cardRefs   = useRef<(HTMLDivElement | null)[]>([]);
+  const stepsRef = useRef<HTMLDivElement>(null);
+  const dotRefs = useRef<(SVGGElement | null)[]>([]);
+  const numRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const container = stepsRef.current;
@@ -75,24 +72,24 @@ export function ComoFunciona() {
   return (
     <div className="section__inner steps-section__inner">
       <h2 className="section__title" style={{ textAlign: 'center', marginBottom: '2rem' }}>
-        Implementarlo es más fácil de lo que crees
+        Así de simple funciona
       </h2>
 
-      <div className="steps" ref={stepsRef}>
-        {/* Background numbers */}
+      <div className="steps steps--three" ref={stepsRef}>
         <div className="steps__bgnums" aria-hidden="true">
           {steps.map((s, i) => (
             <span
               key={s.num}
               className="steps__bgnum"
-              ref={(el) => { numRefs.current[i] = el; }}
+              ref={(el) => {
+                numRefs.current[i] = el;
+              }}
             >
               {s.num}
             </span>
           ))}
         </div>
 
-        {/* SVG: horizontal line + dots */}
         <svg
           className="steps__svg"
           viewBox="0 0 1200 160"
@@ -108,8 +105,10 @@ export function ComoFunciona() {
           </defs>
 
           <line
-            x1={0} y1={DOT_Y}
-            x2={1200} y2={DOT_Y}
+            x1={0}
+            y1={DOT_Y}
+            x2={1200}
+            y2={DOT_Y}
             stroke="url(#stepsLineGrad)"
             strokeWidth="4"
             strokeLinecap="round"
@@ -118,7 +117,9 @@ export function ComoFunciona() {
           {DOT_CX.map((cx, i) => (
             <g
               key={cx}
-              ref={(el) => { dotRefs.current[i] = el; }}
+              ref={(el) => {
+                dotRefs.current[i] = el;
+              }}
               className="steps__dot"
             >
               <circle cx={cx} cy={DOT_Y} r={18} fill="url(#stepsLineGrad)" />
@@ -134,16 +135,18 @@ export function ComoFunciona() {
           ))}
         </svg>
 
-        {/* Cards */}
         <div className="steps__cards">
           {steps.map((step, i) => (
             <div
               key={step.num}
               className="steps__card card--glass"
-              ref={(el) => { cardRefs.current[i] = el; }}
+              ref={(el) => {
+                cardRefs.current[i] = el;
+              }}
             >
-              {/* Mobile-only step number badge */}
-              <span className="steps__card-badge" aria-hidden="true">{step.num}</span>
+              <span className="steps__card-badge" aria-hidden="true">
+                {step.num}
+              </span>
               <h3 className="steps__card-title">{step.title}</h3>
               <p className="steps__card-detail">{step.detail}</p>
             </div>

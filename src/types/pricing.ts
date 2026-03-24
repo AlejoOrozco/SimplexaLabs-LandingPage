@@ -3,6 +3,8 @@
  */
 
 export interface PricingCardProps {
+  /** Optional anchor id for deep links (e.g. #plan-sitio-web) */
+  id?: string;
   name: string;
   price: string;
   period: string;
@@ -12,7 +14,8 @@ export interface PricingCardProps {
   /** Optional setup fee (e.g. "Setup fee único: $497 USD") */
   setupFee?: string;
   features: string[];
-  result: string;
+  /** Optional “result” / highlight line under features */
+  result?: string;
   cta: string;
   ctaHref: string;
   /** When set, CTA opens schedule modal instead of navigating to ctaHref */
