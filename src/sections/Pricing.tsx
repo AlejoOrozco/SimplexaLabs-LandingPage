@@ -13,7 +13,7 @@ interface ModularPlan {
   result?: string;
   cta: string;
   popular?: boolean;
-  color: string;
+  pillar: 'website' | 'marketing' | 'agents' | 'brand';
 }
 
 const MODULAR_PLANS: ModularPlan[] = [
@@ -31,7 +31,7 @@ const MODULAR_PLANS: ModularPlan[] = [
       'Entrega en 10 días hábiles',
     ],
     cta: 'Quiero mi sitio web',
-    color: '#2563eb',
+    pillar: 'website',
   },
   {
     id: 'solo-mkt',
@@ -47,7 +47,7 @@ const MODULAR_PLANS: ModularPlan[] = [
       'Lo publicamos o te lo entregamos listo',
     ],
     cta: 'Quiero el marketing',
-    color: '#7c3aed',
+    pillar: 'marketing',
   },
   {
     id: 'solo-auto',
@@ -64,7 +64,7 @@ const MODULAR_PLANS: ModularPlan[] = [
       'Reporte mensual',
     ],
     cta: 'Quiero las automatizaciones',
-    color: '#0d9488',
+    pillar: 'agents',
   },
   {
     id: 'sistema-completo',
@@ -82,7 +82,7 @@ const MODULAR_PLANS: ModularPlan[] = [
     result: '⚠️ Solo quedan 4 cupos del Programa Fundador',
     cta: 'Quiero el sistema completo',
     popular: true,
-    color: '#5b5ef4',
+    pillar: 'brand',
   },
   {
     id: 'ecommerce',
@@ -98,7 +98,7 @@ const MODULAR_PLANS: ModularPlan[] = [
       'Recuperación automática de carritos abandonados',
     ],
     cta: 'Quiero esto para mi tienda',
-    color: '#e11d48',
+    pillar: 'brand',
   },
 ];
 
@@ -130,7 +130,7 @@ export function Pricing() {
             ctaHref="#"
             onCtaClick={(planName) => openScheduleModal(planName)}
             popular={plan.popular}
-            color={plan.color}
+            pillar={plan.pillar}
             dimmed={hoveredId !== null && hoveredId !== plan.id}
             onHoverStart={() => setHoveredId(plan.id)}
             onHoverEnd={() => setHoveredId(null)}

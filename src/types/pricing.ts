@@ -21,8 +21,8 @@ export interface PricingCardProps {
   /** When set, CTA opens schedule modal instead of navigating to ctaHref */
   onCtaClick?: (planName: string) => void;
   popular?: boolean;
-  /** Accent color for glow/shimmer (hex) */
-  color?: string;
+  /** Pillar accent for price, bullets, and CTA */
+  pillar?: 'website' | 'marketing' | 'agents' | 'brand';
   dimmed?: boolean;
   onHoverStart?: () => void;
   onHoverEnd?: () => void;

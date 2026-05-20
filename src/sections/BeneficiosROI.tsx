@@ -11,7 +11,7 @@ export function BeneficiosROI() {
 
   return (
     <div className="section__inner">
-      <h2 className="section__title">Lo que realmente ganas con SimpLexaLabs</h2>
+      <h2 className="section__title">Lo que realmente ganas con SimplexLabs</h2>
       <p className="section__subtitle">
         No es solo automatización. Es más tiempo, más velocidad y más capacidad operativa para vender.
       </p>

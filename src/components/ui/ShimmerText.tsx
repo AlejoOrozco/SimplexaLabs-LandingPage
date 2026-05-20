@@ -17,7 +17,7 @@ export function ShimmerText({ text, className }: ShimmerTextProps) {
       }}
       className={cn(
         'inline-block bg-[length:200%_100%] bg-clip-text font-bold text-transparent',
-        'bg-gradient-to-r from-[#f4f6ff] via-[#22d3ee] to-[#a5b4fc]',
+        'shimmer-text',
         className
       )}
       transition={{

@@ -128,7 +128,7 @@ export function ChatWidget() {
           <motion.div
             className="chat-panel"
             role="dialog"
-            aria-label="Asesor SimpLexaLabs"
+            aria-label="Asesor SimplexLabs"
             aria-modal="true"
             initial={{ opacity: 0, y: 32, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -140,7 +140,7 @@ export function ChatWidget() {
                 S
               </div>
               <div>
-                <p className="chat-panel__name">Camilo · SimpLexaLabs</p>
+                <p className="chat-panel__name">Camilo · SimplexLabs</p>
                 <p className="chat-panel__status">
                   <span className="chat-panel__dot" />
                   En línea · responde al instante

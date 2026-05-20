@@ -22,7 +22,7 @@ export function PricingCard({
   ctaHref,
   onCtaClick,
   popular = false,
-  color = '#2563eb',
+  pillar = 'brand',
   dimmed = false,
   onHoverStart,
   onHoverEnd,
@@ -68,6 +68,7 @@ export function PricingCard({
       }}
       className={cn(
         'pricing-card',
+        `pricing-card--${pillar}`,
         popular && 'pricing-card--popular'
       )}
       onMouseEnter={handleMouseEnter}
@@ -80,25 +81,12 @@ export function PricingCard({
       }}
       transition={{ duration: 0.18, ease: 'easeOut' }}
     >
-      {/* Static accent tint */}
-      <div
-        aria-hidden="true"
-        className="pricing-card__accent-tint"
-        style={{
-          background: `radial-gradient(ellipse at 20% 20%, ${color}14, transparent 65%)`,
-        }}
-      />
-      {/* Hover glow */}
       <motion.div
         aria-hidden="true"
         className="pricing-card__accent-glow"
-        style={{
-          opacity: glowOpacity,
-          background: `radial-gradient(ellipse at 20% 20%, ${color}2e, transparent 65%)`,
-        }}
+        style={{ opacity: glowOpacity }}
       />
-      {/* Shimmer sweep */}
-      <div aria-hidden="true" className="pricing-card__shimmer" />
+      <motion.div aria-hidden="true" className="pricing-card__shimmer" />
 
       {popular && <span className="pricing-card__badge">Más popular</span>}
       <h3 className="pricing-card__name">{name}</h3>
@@ -126,22 +114,11 @@ export function PricingCard({
           {cta}
         </Button>
       ) : (
-        <Button
-          href={ctaHref}
-          variant="primary"
-          className="pricing-card__cta"
-        >
+        <Button href={ctaHref} variant="primary" className="pricing-card__cta">
           {cta}
         </Button>
       )}
-      {/* Accent bottom line on hover */}
-      <div
-        aria-hidden="true"
-        className="pricing-card__accent-line"
-        style={{
-          background: `linear-gradient(to right, ${color}80, transparent)`,
-        }}
-      />
+      <div aria-hidden="true" className="pricing-card__accent-line" />
     </motion.article>
   );
 }

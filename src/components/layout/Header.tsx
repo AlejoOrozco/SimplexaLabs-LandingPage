@@ -1,14 +1,20 @@
-import { Button, CtaBorderWrap } from '../ui';
-import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
+import { Button } from '../ui';
+import { BRAND_LOGO, BRAND_NAME } from '@/constants/brand';
+import { APP_LOGIN_URL } from '@/constants/contact';
 
 export function Header() {
-  const { openScheduleModal } = useScheduleMeeting();
-
   return (
     <header className="header">
       <div className="header__inner">
-        <a href="/" className="header__logo">
-          SimpLexaLabs
+        <a href="/" className="header__logo" aria-label={`${BRAND_NAME} — inicio`}>
+          <img
+            src={BRAND_LOGO}
+            alt={BRAND_NAME}
+            className="header__logo-img"
+            width={140}
+            height={36}
+            decoding="async"
+          />
         </a>
         <nav className="header__nav" aria-label="Principal">
           <a href="#problema-solucion">Servicios</a>
@@ -16,15 +22,12 @@ export function Header() {
           <a href="#programa-fundador">Nosotros</a>
           <a href="#how-it-works">Cómo funciona</a>
           <a href="#cta-final">Contacto</a>
-          <CtaBorderWrap>
-            <Button
-              variant="primary"
-              className="btn--hero-primary header__cta"
-              onClick={() => openScheduleModal('Demo Gratis')}
-            >
-              Demo Gratis
-            </Button>
-          </CtaBorderWrap>
+          <a href={APP_LOGIN_URL} className="header__login">
+            Iniciar sesión
+          </a>
+          <Button variant="primary" className="header__cta" href={APP_LOGIN_URL}>
+            Demo Gratis
+          </Button>
         </nav>
       </div>
     </header>

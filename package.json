@@ -12,6 +12,8 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@fontsource/geist-mono": "^5.1.0",
+    "@fontsource/geist-sans": "^5.1.0",
     "@tailwindcss/vite": "^4.2.1",
     "@types/three": "^0.183.1",
     "clsx": "^2.1.1",

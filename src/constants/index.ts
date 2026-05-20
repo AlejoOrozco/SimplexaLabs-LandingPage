@@ -1,4 +1,5 @@
-export { WHATSAPP_URL } from './contact';
+export { BRAND_NAME, BRAND_FAVICON, BRAND_LOGO } from './brand';
+export { WHATSAPP_URL, APP_LOGIN_URL } from './contact';
 export { PLAN_COLORS, PLANS, PLANS_SIN_WEB, PLANS_CON_WEB, type PlanEntry } from './pricing';
 export { FAQ_ITEMS, type FaqItem } from './faq';
 export {

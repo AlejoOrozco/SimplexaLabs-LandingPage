@@ -9,22 +9,22 @@ export type LogContext = Record<string, unknown>;
 export const logger = {
   error(message: string, context?: LogContext): void {
     if (isDev) {
-      console.error('[SimpLexaLabs]', message, context ?? '');
+      console.error('[SimplexLabs]', message, context ?? '');
     } else {
       // Production: extend here (e.g. send to error tracking service)
-      console.error('[SimpLexaLabs]', message, context ?? '');
+      console.error('[SimplexLabs]', message, context ?? '');
     }
   },
 
   warn(message: string, context?: LogContext): void {
     if (isDev) {
-      console.warn('[SimpLexaLabs]', message, context ?? '');
+      console.warn('[SimplexLabs]', message, context ?? '');
     }
   },
 
   info(message: string, context?: LogContext): void {
     if (isDev) {
-      console.info('[SimpLexaLabs]', message, context ?? '');
+      console.info('[SimplexLabs]', message, context ?? '');
     }
   },
 };

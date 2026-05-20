@@ -141,14 +141,24 @@ const FloatingPaths = memo(function FloatingPaths({
         <title>Background Paths</title>
         <defs>
           <linearGradient
-            id="heroPathsGradient"
+            id="heroPathsGradientPurple"
             x1="0%"
             x2="100%"
             y1="0%"
             y2="0%"
           >
-            <stop offset="0%" stopColor="#2563eb" stopOpacity="0.45" />
-            <stop offset="100%" stopColor="#7c3aed" stopOpacity="0.45" />
+            <stop offset="0%" stopColor="var(--color-brand)" stopOpacity="0.15" />
+            <stop offset="100%" stopColor="var(--color-agents)" stopOpacity="0.15" />
+          </linearGradient>
+          <linearGradient
+            id="heroPathsGradientBlue"
+            x1="0%"
+            x2="100%"
+            y1="0%"
+            y2="0%"
+          >
+            <stop offset="0%" stopColor="var(--color-website-dark)" stopOpacity="0.1" />
+            <stop offset="100%" stopColor="var(--color-website)" stopOpacity="0.1" />
           </linearGradient>
         </defs>
 
@@ -158,7 +168,7 @@ const FloatingPaths = memo(function FloatingPaths({
             <motion.path
               key={path.id}
               d={path.d}
-              stroke="url(#heroPathsGradient)"
+              stroke="url(#heroPathsGradientPurple)"
               strokeLinecap="round"
               strokeWidth={path.width}
               style={{ opacity: path.opacity }}
@@ -188,7 +198,7 @@ const FloatingPaths = memo(function FloatingPaths({
             <motion.path
               key={path.id}
               d={path.d}
-              stroke="url(#heroPathsGradient)"
+              stroke="url(#heroPathsGradientPurple)"
               strokeLinecap="round"
               strokeWidth={path.width}
               style={{ opacity: path.opacity }}
@@ -218,7 +228,7 @@ const FloatingPaths = memo(function FloatingPaths({
             <motion.path
               key={path.id}
               d={path.d}
-              stroke="url(#heroPathsGradient)"
+              stroke="url(#heroPathsGradientBlue)"
               strokeLinecap="round"
               strokeWidth={path.width}
               style={{ opacity: path.opacity }}
