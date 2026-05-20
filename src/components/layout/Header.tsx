@@ -1,5 +1,5 @@
 import { Button } from '../ui';
-import { BRAND_LOGO, BRAND_NAME } from '@/constants/brand';
+import { BRAND_HEADER_LOGO, BRAND_NAME } from '@/constants/brand';
 import { APP_LOGIN_URL } from '@/constants/contact';
 
 export function Header() {
@@ -8,11 +8,11 @@ export function Header() {
       <div className="header__inner">
         <a href="/" className="header__logo" aria-label={`${BRAND_NAME} — inicio`}>
           <img
-            src={BRAND_LOGO}
+            src={BRAND_HEADER_LOGO}
             alt={BRAND_NAME}
             className="header__logo-img"
-            width={140}
-            height={36}
+            width={288}
+            height={192}
             decoding="async"
           />
         </a>
