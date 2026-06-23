@@ -22,7 +22,8 @@ export function ChatWidget() {
     setInput,
     loading,
     isPanelOpen,
-    setIsPanelOpen,
+    closePanel,
+    togglePanel,
     hasNewMessage,
     sendMessage,
     bottomRef,
@@ -30,9 +31,9 @@ export function ChatWidget() {
   } = useChat();
 
   const handleClose = useCallback(() => {
-    setIsPanelOpen(false);
+    closePanel();
     setTimeout(() => fabRef.current?.focus(), 0);
-  }, [setIsPanelOpen]);
+  }, [closePanel]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -79,7 +80,7 @@ export function ChatWidget() {
           type="button"
           className="chat-fab"
           aria-label={isPanelOpen ? 'Cerrar asesor' : 'Hablar con el asesor IA'}
-          onClick={() => setIsPanelOpen((v) => !v)}
+          onClick={togglePanel}
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.94 }}
           animate={
@@ -87,9 +88,9 @@ export function ChatWidget() {
               ? {}
               : {
                   boxShadow: [
-                    '0 0 0 0 rgba(124,58,237,0.5)',
-                    '0 0 0 14px rgba(124,58,237,0)',
-                    '0 0 0 0 rgba(124,58,237,0)',
+                    '0 0 0 0 rgba(177,74,232,0.5)',
+                    '0 0 0 14px rgba(177,74,232,0)',
+                    '0 0 0 0 rgba(177,74,232,0)',
                   ],
                 }
           }

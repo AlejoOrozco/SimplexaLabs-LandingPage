@@ -1,4 +1,5 @@
 import { ElegantShapes } from '../components/ElegantShapes';
+import { Reveal } from '../components/ui';
 
 const PROBLEMS = [
   {
@@ -39,15 +40,17 @@ export function Problema() {
     <div className="problema-solucion">
       <ElegantShapes />
       <div className="section__inner problema-solucion__inner">
-        <p className="problema-solucion__eyebrow">Problema → Solución</p>
-        <h2 className="section__title section__title--two-lines section__title--gradient">¿Te suena familiar?</h2>
-        <p className="section__subtitle problema-solucion__lead">
-          A la izquierda, lo que hoy te frena. A la derecha, lo que construimos y operamos por ti — sin que tengas que
-          volverte experto en herramientas.
-        </p>
+        <Reveal direction="up">
+          <p className="problema-solucion__eyebrow">Problema → Solución</p>
+          <h2 className="section__title section__title--two-lines section__title--gradient">¿Te suena familiar?</h2>
+          <p className="section__subtitle problema-solucion__lead">
+            A la izquierda, lo que hoy te frena. A la derecha, lo que construimos y operamos por ti — sin que tengas que
+            volverte experto en herramientas.
+          </p>
+        </Reveal>
 
         <div className="problema-solucion__split">
-          <div className="problema-solucion__col problema-solucion__col--pain">
+          <Reveal direction="right" className="problema-solucion__col problema-solucion__col--pain">
             <h3 className="problema-solucion__col-title">Sin un sistema claro…</h3>
             <ul className="problema-solucion__list problema-solucion__list--pain">
               {PROBLEMS.map((item) => (
@@ -62,9 +65,9 @@ export function Problema() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
 
-          <div className="problema-solucion__col problema-solucion__col--gain">
+          <Reveal direction="left" delay={0.12} className="problema-solucion__col problema-solucion__col--gain">
             <h3 className="problema-solucion__col-title">Con nosotros…</h3>
             <ul className="problema-solucion__list problema-solucion__list--gain">
               {SOLUTIONS.map((item) => (
@@ -79,12 +82,14 @@ export function Problema() {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
 
-        <p className="problema__transition">
-          Nosotros no te enseñamos a hacerlo. <strong>Lo hacemos por ti.</strong>
-        </p>
+        <Reveal direction="up" delay={0.1}>
+          <p className="problema__transition">
+            Nosotros no te enseñamos a hacerlo. <strong>Lo hacemos por ti.</strong>
+          </p>
+        </Reveal>
       </div>
     </div>
   );

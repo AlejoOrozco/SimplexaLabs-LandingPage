@@ -1,5 +1,5 @@
 import { useState, useId } from 'react';
-import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
+import { useScheduleMeeting } from '@/contexts/scheduleMeeting';
 import {
   hasSubmittedFromThisDevice,
   markSubmittedFromThisDevice,

@@ -55,7 +55,7 @@ function ElegantShape({
             backdropFilter: 'blur(8px)',
             WebkitBackdropFilter: 'blur(8px)',
             boxShadow:
-              '0 4px 32px -4px rgba(30, 27, 75, 0.35), 0 0 0 1px rgba(165, 180, 252, 0.06), inset 0 1px 0 rgba(255,255,255,0.04)',
+              '0 4px 32px -4px rgba(70, 25, 90, 0.35), 0 0 0 1px rgba(214, 163, 255, 0.06), inset 0 1px 0 rgba(255,255,255,0.04)',
           }}
         >
           <div
@@ -64,7 +64,7 @@ function ElegantShape({
               inset: 0,
               borderRadius: 'inherit',
               background:
-                'radial-gradient(circle at 50% 50%, rgba(165, 180, 252, 0.08), transparent 65%)',
+                'radial-gradient(circle at 50% 50%, rgba(214, 163, 255, 0.08), transparent 65%)',
             }}
           />
         </div>
@@ -81,7 +81,7 @@ const SHAPES: ShapeConfig[] = [
     width: 300,
     height: 500,
     rotate: -8,
-    gradient: 'linear-gradient(135deg, rgba(30, 27, 75, 0.32), rgba(30, 58, 95, 0.12), transparent 70%)',
+    gradient: 'linear-gradient(135deg, rgba(70, 25, 90, 0.32), rgba(50, 35, 110, 0.12), transparent 70%)',
     borderRadius: 24,
   },
   {
@@ -90,7 +90,7 @@ const SHAPES: ShapeConfig[] = [
     width: 600,
     height: 200,
     rotate: 15,
-    gradient: 'linear-gradient(to left, rgba(30, 27, 75, 0.28), rgba(165, 180, 252, 0.1), transparent 65%)',
+    gradient: 'linear-gradient(to left, rgba(70, 25, 90, 0.28), rgba(214, 163, 255, 0.1), transparent 65%)',
     borderRadius: 20,
   },
   {
@@ -99,7 +99,7 @@ const SHAPES: ShapeConfig[] = [
     width: 300,
     height: 300,
     rotate: 24,
-    gradient: 'linear-gradient(160deg, rgba(30, 58, 95, 0.25), rgba(30, 27, 75, 0.15), transparent 60%)',
+    gradient: 'linear-gradient(160deg, rgba(50, 35, 110, 0.25), rgba(70, 25, 90, 0.15), transparent 60%)',
     borderRadius: 32,
   },
   {
@@ -108,7 +108,7 @@ const SHAPES: ShapeConfig[] = [
     width: 250,
     height: 100,
     rotate: -20,
-    gradient: 'linear-gradient(to right, rgba(165, 180, 252, 0.14), rgba(30, 27, 75, 0.08), transparent)',
+    gradient: 'linear-gradient(to right, rgba(214, 163, 255, 0.14), rgba(70, 25, 90, 0.08), transparent)',
     borderRadius: 12,
   },
   {
@@ -117,7 +117,7 @@ const SHAPES: ShapeConfig[] = [
     width: 400,
     height: 150,
     rotate: 35,
-    gradient: 'linear-gradient(to left, rgba(30, 58, 95, 0.22), rgba(165, 180, 252, 0.06), transparent 70%)',
+    gradient: 'linear-gradient(to left, rgba(50, 35, 110, 0.22), rgba(214, 163, 255, 0.06), transparent 70%)',
     borderRadius: 16,
   },
   {
@@ -126,7 +126,7 @@ const SHAPES: ShapeConfig[] = [
     width: 200,
     height: 200,
     rotate: -25,
-    gradient: 'linear-gradient(120deg, rgba(30, 27, 75, 0.28), transparent 65%)',
+    gradient: 'linear-gradient(120deg, rgba(70, 25, 90, 0.28), transparent 65%)',
     borderRadius: 28,
   },
   {
@@ -135,7 +135,7 @@ const SHAPES: ShapeConfig[] = [
     width: 150,
     height: 80,
     rotate: 45,
-    gradient: 'linear-gradient(to right, rgba(165, 180, 252, 0.18), rgba(30, 27, 75, 0.06), transparent)',
+    gradient: 'linear-gradient(to right, rgba(214, 163, 255, 0.18), rgba(70, 25, 90, 0.06), transparent)',
     borderRadius: 10,
   },
   {
@@ -144,7 +144,7 @@ const SHAPES: ShapeConfig[] = [
     width: 450,
     height: 120,
     rotate: -12,
-    gradient: 'linear-gradient(to right, rgba(30, 58, 95, 0.2), rgba(30, 27, 75, 0.08), transparent 60%)',
+    gradient: 'linear-gradient(to right, rgba(50, 35, 110, 0.2), rgba(70, 25, 90, 0.08), transparent 60%)',
     borderRadius: 18,
   },
 ];

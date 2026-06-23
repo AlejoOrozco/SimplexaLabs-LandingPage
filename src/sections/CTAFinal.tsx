@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Button, CtaBorderWrap } from '../components';
-import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
+import { useScheduleMeeting } from '@/contexts/scheduleMeeting';
 import { WHATSAPP_URL } from '../constants';
 
 export function CTAFinal() {

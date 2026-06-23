@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { WHATSAPP_URL } from '@/constants/contact';
-import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
+import { useScheduleMeeting } from '@/contexts/scheduleMeeting';
 import { Button } from '../components';
 
 const SPOTS_TOTAL = 4;

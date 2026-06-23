@@ -27,6 +27,7 @@ const STAGGER = 0.18;
 
 export function ComoFunciona() {
   const stepsRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<SVGLineElement>(null);
   const dotRefs = useRef<(SVGGElement | null)[]>([]);
   const numRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -39,6 +40,8 @@ export function ComoFunciona() {
       ([entry]) => {
         if (!entry.isIntersecting) return;
         observer.disconnect();
+
+        lineRef.current?.classList.add('steps-line--draw');
 
         steps.forEach((_, i) => {
           const delay = `${i * STAGGER}s`;
@@ -99,12 +102,15 @@ export function ComoFunciona() {
         >
           <defs>
             <linearGradient id="stepsLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#2563eb" />
-              <stop offset="100%" stopColor="#7c3aed" />
+              <stop offset="0%" stopColor="#ff7a2f" />
+              <stop offset="50%" stopColor="#e0249c" />
+              <stop offset="100%" stopColor="#5b3fe6" />
             </linearGradient>
           </defs>
 
           <line
+            ref={lineRef}
+            className="steps__line"
             x1={0}
             y1={DOT_Y}
             x2={1200}

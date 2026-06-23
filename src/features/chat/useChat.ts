@@ -13,18 +13,31 @@ export function useChat() {
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  isPanelOpenRef.current = isPanelOpen;
+  useEffect(() => {
+    isPanelOpenRef.current = isPanelOpen;
+  }, [isPanelOpen]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, loading]);
 
+  // Focus on open is a DOM side effect (no state writes here).
   useEffect(() => {
-    if (isPanelOpen) {
-      setTimeout(() => inputRef.current?.focus(), 120);
-      setHasNewMessage(false);
-    }
+    if (!isPanelOpen) return;
+    const id = setTimeout(() => inputRef.current?.focus(), 120);
+    return () => clearTimeout(id);
   }, [isPanelOpen]);
+
+  const closePanel = useCallback(() => {
+    setIsPanelOpen(false);
+  }, []);
+
+  const togglePanel = useCallback(() => {
+    setIsPanelOpen((prev) => {
+      if (!prev) setHasNewMessage(false);
+      return !prev;
+    });
+  }, []);
 
   const sendMessage = useCallback(async (text: string) => {
     const trimmed = text.trim();
@@ -65,7 +78,8 @@ export function useChat() {
     setInput,
     loading,
     isPanelOpen,
-    setIsPanelOpen,
+    closePanel,
+    togglePanel,
     hasNewMessage,
     sendMessage,
     bottomRef,

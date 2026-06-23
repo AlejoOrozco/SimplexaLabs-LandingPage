@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { ScheduleMeetingProvider } from './contexts/ScheduleMeetingContext';
-import { Header, Footer, SocialProofToast, ScheduleMeetingModal } from './components';
+import { Header, Footer, SocialProofToast, ScheduleMeetingModal, PageBackground } from './components';
 import { LazySection } from './sections/LazySection';
 import { Pricing } from './sections/Pricing';
 
@@ -27,6 +27,7 @@ function SectionFallback() {
 function App() {
   return (
     <ScheduleMeetingProvider>
+      <PageBackground />
       <Header />
       <main>
         <LazySection id="hero" ariaLabel="Inicio" placeholderMinHeight={420} className="section section--gradient-bg hero">

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Button } from '../components';
-import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
+import { useScheduleMeeting } from '@/contexts/scheduleMeeting';
 import { cn } from '@/lib/utils';
 
 type IndustryTab = {
@@ -126,6 +126,14 @@ export function CasosDeUso() {
               {item.emoji}
             </span>{' '}
             {item.label}
+            {active === i && (
+              <motion.span
+                className="industria-tab__indicator"
+                layoutId="industriaTabIndicator"
+                transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                aria-hidden="true"
+              />
+            )}
           </button>
         ))}
       </div>

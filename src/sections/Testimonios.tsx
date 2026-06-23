@@ -1,5 +1,5 @@
 import type { Testimonial } from '@/types';
-import { TestimonialWall } from '../components';
+import { TestimonialWall, Reveal } from '../components';
 
 /** Reseñas de ejemplo — sustituir por testimonios reales cuando estén disponibles */
 const row1: Testimonial[] = [
@@ -47,12 +47,14 @@ const row2: Testimonial[] = [
 export function Testimonios() {
   return (
     <div className="section__inner testimonios__inner">
-      <h2 className="section__title" style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
-        Lo que dicen nuestros primeros clientes
-      </h2>
-      <p className="section__subtitle" style={{ textAlign: 'center', marginBottom: '2rem' }}>
-        Historias de negocios que ya delegaron la parte digital en un solo sistema.
-      </p>
+      <Reveal direction="up">
+        <h2 className="section__title" style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
+          Lo que dicen nuestros primeros clientes
+        </h2>
+        <p className="section__subtitle" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          Historias de negocios que ya delegaron la parte digital en un solo sistema.
+        </p>
+      </Reveal>
       <TestimonialWall rows={[row1, row2]} duration={80} />
       <p className="testimonios__disclaimer" role="note">
         Estas reseñas han sido traducidas automáticamente al español desde el inglés.

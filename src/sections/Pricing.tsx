@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
-import { PricingCard } from '../components';
+import { useScheduleMeeting } from '@/contexts/scheduleMeeting';
+import { PricingCard, Reveal } from '../components';
 interface ModularPlan {
   id: string;
   name: string;
@@ -108,10 +108,12 @@ export function Pricing() {
 
   return (
     <div className="section__inner pricing-section__inner" id="modular-packages">
-      <h2 className="section__title">Elige tu punto de partida</h2>
-      <p className="section__subtitle">
-        Contratos anuales con configuración incluida según el plan. Precios en USD.
-      </p>
+      <Reveal direction="up">
+        <h2 className="section__title">Elige tu punto de partida</h2>
+        <p className="section__subtitle">
+          Contratos anuales con configuración incluida según el plan. Precios en USD.
+        </p>
+      </Reveal>
 
       <div id="pricing-grid" className="pricing-grid pricing-grid--modular">
         {MODULAR_PLANS.map((plan) => (

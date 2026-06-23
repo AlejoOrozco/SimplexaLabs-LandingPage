@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Button, Card } from '../components';
-import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
+import { useScheduleMeeting } from '@/contexts/scheduleMeeting';
 import {
   Sparkles,
   LayoutDashboard,

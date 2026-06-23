@@ -1,9 +1,10 @@
 export { ErrorBoundary } from './ErrorBoundary';
 export { Header, Footer } from './layout';
-export { Button, Card, CtaBorderWrap, ShimmerText } from './ui';
+export { Button, Card, CtaBorderWrap, ShimmerText, Reveal, RevealGroup, RevealItem } from './ui';
 export { PricingCard } from './PricingCard';
 export { ScheduleMeetingModal } from './ScheduleMeetingModal';
 export { BackgroundPaths } from './BackgroundPaths';
+export { PageBackground } from './PageBackground';
 export { FadeInWords } from './FadeInWords';
 export { BlurBlobs } from './BlurBlobs';
 export { FlowField } from './FlowField';

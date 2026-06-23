@@ -1,6 +1,6 @@
 import { motion } from 'motion/react';
 import { Button } from '../components';
-import { useScheduleMeeting } from '@/contexts/ScheduleMeetingContext';
+import { useScheduleMeeting } from '@/contexts/scheduleMeeting';
 import { Instagram, Megaphone, Video, Mail } from 'lucide-react';
 
 const ITEMS = [

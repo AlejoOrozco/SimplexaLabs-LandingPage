@@ -24,8 +24,9 @@ export function CtaBorderWrap({ children, outline = false }: CtaBorderWrapProps)
         <defs>
           <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="rgba(255,255,255,0)" />
-            <stop offset="40%" stopColor="rgba(255,255,255,0.95)" />
-            <stop offset="60%" stopColor="rgba(255,255,255,0.95)" />
+            <stop offset="35%" stopColor="#ffd9b3" />
+            <stop offset="50%" stopColor="#ffffff" />
+            <stop offset="65%" stopColor="#e6c4ff" />
             <stop offset="100%" stopColor="rgba(255,255,255,0)" />
           </linearGradient>
         </defs>
@@ -35,8 +36,8 @@ export function CtaBorderWrap({ children, outline = false }: CtaBorderWrapProps)
           y="2"
           width="196"
           height="44"
-          rx="8"
-          ry="8"
+          rx="10"
+          ry="10"
           stroke={`url(#${gradientId})`}
           strokeWidth="2"
           strokeDasharray={`${STRIPE_LENGTH} ${BORDER_PATH_LENGTH - STRIPE_LENGTH}`}

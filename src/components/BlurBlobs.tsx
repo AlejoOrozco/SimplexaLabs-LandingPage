@@ -27,7 +27,7 @@ interface BlurBlobsProps {
 
 export const BlurBlobs = memo(function BlurBlobs({
   className,
-  colors = ['#bae6fd', '#7c3aed', '#2563eb', '#e0f2fe'],
+  colors = ['#ff7a2f', '#fb3d8b', '#b14ae8', '#5b3fe6'],
   blur = 100,
   speed = 1,
   opacity = 0.55,

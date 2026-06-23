@@ -1,13 +1,5 @@
-import { createContext, useCallback, useContext, useState, type ReactNode } from 'react';
-
-type ScheduleMeetingContextValue = {
-  openScheduleModal: (preselectedPlan?: string) => void;
-  closeScheduleModal: () => void;
-  isOpen: boolean;
-  preselectedPlan: string | undefined;
-};
-
-const ScheduleMeetingContext = createContext<ScheduleMeetingContextValue | null>(null);
+import { useCallback, useState, type ReactNode } from 'react';
+import { ScheduleMeetingContext } from './scheduleMeeting';
 
 export function ScheduleMeetingProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,10 +27,4 @@ export function ScheduleMeetingProvider({ children }: { children: ReactNode }) {
       {children}
     </ScheduleMeetingContext.Provider>
   );
-}
-
-export function useScheduleMeeting() {
-  const ctx = useContext(ScheduleMeetingContext);
-  if (!ctx) throw new Error('useScheduleMeeting must be used within ScheduleMeetingProvider');
-  return ctx;
 }
